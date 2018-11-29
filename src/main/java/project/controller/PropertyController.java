@@ -39,6 +39,8 @@ public class PropertyController {
     private ArrayList<MapsCarrier> mapsCarriers = new ArrayList<MapsCarrier>();
     private ArrayList<Transport> transportArrayList = new ArrayList<Transport>();
     private ArrayList<Maps> mapsArrayList = new ArrayList<Maps>();
+    private ArrayList<Route> routeArrayList = new ArrayList<Route>();
+
 
 
 
@@ -83,8 +85,10 @@ public class PropertyController {
     public String addUser(@ModelAttribute("routeUser") RouteUser routeUser){
         Integer start = ((Points)pointsService.getByLoginP(routeUser.getStart())).getIdPoint();
         Integer end = ((Points)pointsService.getByLoginP(routeUser.getEnd())).getIdPoint();
-        routeService.getRouteByEndStart(start,end);
-
+        this.routeArrayList = (ArrayList<Route>)routeService.getRouteByEndStart(start,end);
+        for (Route r:this.routeArrayList) {
+            System.out.println(r.getNameOfRoute());
+        }
         return "redirect:/client";
     }
 

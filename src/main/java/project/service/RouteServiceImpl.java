@@ -66,7 +66,7 @@ public class RouteServiceImpl implements ServiceRoute<Route> {
     }
 
     @Override
-    public Route getRouteByEndStart(Integer start, Integer end) {
+    public List<Route> getRouteByEndStart(Integer start, Integer end) {
         return this.routeDao.getRouteByEndStart(start, end);
     }
 }

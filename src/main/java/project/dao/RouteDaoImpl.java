@@ -76,7 +76,7 @@ public class RouteDaoImpl implements DaoRoute<Route> {
     }
 
     @Override
-    public Route getRouteByEndStart(Integer start, Integer end) {
+    public List <Route> getRouteByEndStart(Integer start, Integer end) {
 
         Session session = sessionFactory.openSession();
         List<Route> route1 = new ArrayList<Route>();
@@ -87,6 +87,6 @@ public class RouteDaoImpl implements DaoRoute<Route> {
         if(route1.size() == 0)
             return null;
         else
-            return route1.get(0);
+            return route1;
     }
 }
