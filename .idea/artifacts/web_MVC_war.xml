@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="web MVC:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="BookManger.war">
+      <element id="artifact" artifact-name="web MVC:war exploded" />
+    </root>
+  </artifact>
+</component>

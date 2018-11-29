@@ -1,0 +1,137 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="project"/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- Database Information -->
+    <!-- Database Information -->
+    <bean  id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+
+        <property  name="location"  value="jdbc.properties"  />
+
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+        <property name="url" value="${database.url}" />
+
+        <property   name="driverClassName" value="${database.driver}"  />
+
+        <property  name="username" value="${database.username}" />
+
+        <property  name="password" value="${database.password}"  />
+
+    </bean>
+
+
+    <!-- Hibernate 4 SessionFactory Bean definition -->
+    <bean id="hibernate4AnnotatedSessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="annotatedClasses">
+            <list>
+                <value>project.clasess.Property</value>
+                <value>project.model.User</value>
+                <!--<value>project.model.Route</value>
+                <value>project.model.Maps</value>
+                <value>project.model.Transport</value>
+                <value>project.model.Points</value>-->
+                <value>last.Transport</value>
+                <value>last.Maps</value>
+                <value>last.Route</value>
+                <value>last.Points</value>
+
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
+                </prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+
+    <!--<bean id="propertyDao" class="project.dao.PropertyDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="propertyService" class="project.service.PropertyServiceImpl">
+        <property name="propertyDao" ref="propertyDao"/>
+    </bean>-->
+
+
+    <bean id="userDao" class="project.dao.UserDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="userService" class="project.service.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <bean id="routeDao" class="project.dao.RouteDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="routeService" class="project.service.RouteServiceImpl">
+        <property name="routeDao" ref="routeDao"/>
+    </bean>
+
+    <bean id="pointsDao" class="project.dao.PointsDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="pointsService" class="project.service.PointsServiceImpl">
+        <property name="pointsDao" ref="pointsDao"/>
+    </bean>
+
+    <bean id="transportDao" class="project.dao.TransportDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="transportService" class="project.service.TransportServiceImpl">
+        <property name="transportDao" ref="transportDao"/>
+    </bean>
+
+    <bean id="transportDaoTransport" class="project.dao.TransportDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="transportServiceTransport" class="project.service.TransportServiceImpl">
+        <property name="transportDaoTransport" ref="transportDaoTransport"/>
+    </bean>
+
+
+    <bean id="mapsDao" class="project.dao.MapsDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="mapsService" class="project.service.MapsServiceImpl">
+        <property name="mapsDao" ref="mapsDao"/>
+    </bean>
+
+    <context:component-scan base-package="java"/>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <mvc:default-servlet-handler/>
+    <mvc:annotation-driven/>
+
+</beans>
