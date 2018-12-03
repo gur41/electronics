@@ -33,17 +33,25 @@ public class PropertyController {
     private Service transportService;
     private ServiceTransport transportserviceTransport;
     private RouteCarrier routeCarrier;
+    private RouteUser routeUser;
+
     private Service mapsService;
     private int currentMaps;
     private List points =new ArrayList <Points>();
     private ArrayList<MapsCarrier> mapsCarriers = new ArrayList<MapsCarrier>();
     private ArrayList<Transport> transportArrayList = new ArrayList<Transport>();
     private ArrayList<Maps> mapsArrayList = new ArrayList<Maps>();
-    private ArrayList<Route> routeArrayList = new ArrayList<Route>();
+    private List<Route> routeArrayList = new ArrayList<Route>();
 
 
 
+    public RouteUser getRouteUser() {
+        return routeUser;
+    }
 
+    public void setRouteUser(RouteUser routeUser) {
+        this.routeUser = routeUser;
+    }
 
 
     @Autowired(required = true)
@@ -82,14 +90,14 @@ public class PropertyController {
 
 
     @RequestMapping(value = "/client/showClient", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("routeUser") RouteUser routeUser){
+    public String getListRoutes(@ModelAttribute("listRoutes") ArrayList<Route> routeArrayListGet){
         Integer start = ((Points)pointsService.getByLoginP(routeUser.getStart())).getIdPoint();
         Integer end = ((Points)pointsService.getByLoginP(routeUser.getEnd())).getIdPoint();
-        this.routeArrayList = (ArrayList<Route>)routeService.getRouteByEndStart(start,end);
+        this.routeArrayList = routeService.getRouteByEndStart(start,end);
         for (Route r:this.routeArrayList) {
             System.out.println(r.getNameOfRoute());
         }
-        return "redirect:/client";
+        return "redirect:http://localhost:8080/show_routes";
     }
 
     @RequestMapping(value = "/carrier/showCarrier", method = RequestMethod.POST)
@@ -111,8 +119,14 @@ public class PropertyController {
 
     @RequestMapping(value = "client", method = RequestMethod.GET)
     public String addClient(Model model){
-        model.addAttribute("routeUser", new RouteUser());
+        model.addAttribute("routeUser", this.routeUser = new RouteUser());
         return "AB_client";
+    }
+
+    @RequestMapping(value = "show_routes", method = RequestMethod.GET)
+    public String showClientRoute(Model model){
+        model.addAttribute("listRoutes", this.routeArrayList);
+        return "show_routes";
     }
 
     @RequestMapping(value = "carrier", method = RequestMethod.GET)
