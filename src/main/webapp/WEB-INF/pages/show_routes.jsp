@@ -138,23 +138,47 @@
                             <h1>Форма для оформления доставки товара</h1>
                         </div>
 
+                        <c:if test="${!empty listRoutes}">
+                            <table class="tg">
+                                <tr>
+                                    <th width="40">ID</th>
+                                    <th width="240">Название маршрута</th>
+                                    <th width="120">Цена доставки товара</th>
+                                    <th width="120">Количество необходимого трфнспорта на каждом участке</th>
+                                    <th width="80">Выполнить заявку</th>
+                                </tr>
+                                <c:forEach items="${listRoutes}" var="route">
+                                    <tr>
+                                        <td>${route.idRoute}</td>
+                                        <td>${route.nameOfRoute}</td>
+                                        <td>${route.price}</td>
+                                        <td>${route.description}</td>
+                                        <td><a href="<c:url value='/editFlower/${route.idRoute}'/>">Выполнить заявку</a></td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </c:if>
+
+                        <c:if test="${empty listRoutes}">
+                            <div class="headname">
+                                <h1>Такого маршрута нет</h1>
+                            </div>
+                        </c:if>
+
                          <c:url var="addAction" value="/client/showClient"/>
 
-                        <form:form action="${addAction}" modelAttribute="listRoutes" class="form-horizontal">
+                        <div class="headname"><p></p>
 
+                            <form:form action="${addAction}" modelAttribute="listRoutes" class="form-horizontal">
 
-
-
-                      
-
-
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
+                                <div class="form-group">
+                                   <div class="col-sm-offset-2 col-sm-10">
                                         <input type="submit" class="btn btn-success"
                                                value="<spring:message text="Показать маршруты"/>"/>
+                                    </div>
                                 </div>
-                            </div>
-                        </form:form>
+                            </form:form>
+                        </div>
                     </section>
 
                 </div>

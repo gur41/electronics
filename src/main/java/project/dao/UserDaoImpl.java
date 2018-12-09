@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import project.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements Dao<User> {
@@ -100,7 +101,16 @@ public class UserDaoImpl implements Dao<User> {
 
     @Override
     public User getByLoginP(String login) {
-        return null;
+        Session session = sessionFactory.openSession();
+        List<User> points1 = new ArrayList<User>();
+        if(session.createQuery("from User where login = '"+login+"'").iterate().hasNext())
+            points1 = session.createQuery("from User where login = '"+login+"'").list();
+        logger.info("Point exist: ");
+        session.close();
+        if(points1.size() == 0)
+            return null;
+        else
+            return points1.get(0);
     }
 }
 

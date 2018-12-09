@@ -78,7 +78,12 @@ public class MapsDaoImpl implements Dao<Maps> {
 
     @Override
     public List<Maps> list() {
-        return null;
+        Session session = sessionFactory.openSession();
+
+        List<Maps> userList = session.createQuery("from Maps").list();
+
+        session.close();
+        return userList;
     }
 
 

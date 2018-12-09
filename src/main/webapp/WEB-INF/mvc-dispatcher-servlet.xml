@@ -86,7 +86,10 @@
 
     <bean id="routeService" class="project.service.RouteServiceImpl">
         <property name="routeDao" ref="routeDao"/>
+        <property name="mapsDao" ref="mapsDao"/>
+        <property name="transportDao" ref="transportDao"/>
     </bean>
+
 
     <bean id="pointsDao" class="project.dao.PointsDaoImpl">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>

@@ -151,9 +151,15 @@
                                             <form:label for="role" path="role">
                                                 <spring:message text="Роль"/>
                                             </form:label>
-                                            <form:input path="role" type="text" id="role" name="role" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{3,12}$" title="Введите от 4 до 12 латинских символов!" placeholder="ФИЗ/ЮР ЛИЦО" />
-                                            <i class="icon-lock icon-large"></i>
+                                            <form:select path="role" class="form-control">
+                                                <form:option value="Грузоперевозчик" />
+                                                <form:option value="Грузовладелец" />
+                                            </form:select>
                                         </p>
+
+
+
+
                                     </tr>
 
                                     <tr>

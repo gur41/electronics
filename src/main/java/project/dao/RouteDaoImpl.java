@@ -80,10 +80,11 @@ public class RouteDaoImpl implements DaoRoute<Route> {
 
         Session session = sessionFactory.openSession();
         List<Route> route1 = new ArrayList<Route>();
-        if(session.createQuery("from Route where start_point_of_route = '"+start+"'").iterate().hasNext())
-            route1 = session.createQuery("from Route where end_point_of_route = '"+end+"'").list();
+        if(session.createQuery("from Route where end_point_of_route = '"+end+"' and start_point_of_route = '"+start+"'").iterate().hasNext())
+            route1 = (List <Route>)session.createQuery("from Route where end_point_of_route = '"+end+"' and start_point_of_route = '"+start+"'").list();
         logger.info("Point exist: ");
         session.close();
+        System.out.println("dao:  "+route1.size());
         if(route1.size() == 0)
             return null;
         else

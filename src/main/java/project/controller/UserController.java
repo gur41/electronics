@@ -18,12 +18,22 @@ import java.util.List;
 @Controller
 public class UserController {
     private Service userService;
-
+    private static User currentUser;
 
     @Autowired(required = true)
     @Qualifier(value = "userService")
     public void setUserService(Service userService) {
         this.userService = userService;
+    }
+
+    @RequestMapping(value = "users/currentUser", method = RequestMethod.GET)
+    public static User getCurrentUser(Model model) {
+        model.addAttribute("user", currentUser);
+        return currentUser;
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
     }
 
 
@@ -34,7 +44,11 @@ public class UserController {
         }else {
             this.userService.update(user);
         }
-        return "redirect:/users";
+        currentUser = user;
+        if (user.getRole().equals("Грузоперевозчик"))
+            return "redirect:http://localhost:8080/carrier";
+        else
+            return "redirect:http://localhost:8080/client";
     }
 
 
@@ -66,7 +80,11 @@ public class UserController {
     @RequestMapping(value = "/autorization/add", method = RequestMethod.POST)
     public String listUsers(@ModelAttribute("use") User user){
         if(this.userService.getByLogin(user.getLogin())) {
-            return "redirect:http://localhost:8080/client";
+            currentUser = (User)this.userService.getByLoginP(user.getLogin());
+            if(currentUser.getRole().equals("Грузовладелец"))
+                return "redirect:http://localhost:8080/client";
+            else
+                return "redirect:http://localhost:8080/carrier";
         }
         else {
             return "redirect:/users";
@@ -79,7 +97,12 @@ public class UserController {
         return "autorization";
     }
 
-
+    @RequestMapping(value = "exit", method = RequestMethod.GET)
+    public String getNam(Model model) {
+        model.addAttribute("use", new User());
+        currentUser = null;
+        return "redirect:http://localhost:8080/";
+    }
 
 
 

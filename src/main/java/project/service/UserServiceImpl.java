@@ -48,7 +48,7 @@ import java.util.List;
 
         @Override
         public User getByLoginP(String login) {
-            return null;
+            return this.userDao.getByLoginP(login);
         }
 
 

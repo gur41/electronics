@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import project.clasess.MapsCarrier;
+import project.clasess.Price;
 import project.clasess.RouteCarrier;
 import project.clasess.RouteUser;
 import last.Transport;
@@ -33,7 +34,7 @@ public class PropertyController {
     private Service transportService;
     private ServiceTransport transportserviceTransport;
     private RouteCarrier routeCarrier;
-    private RouteUser routeUser;
+    //private RouteUser routeUser;
 
     private Service mapsService;
     private int currentMaps;
@@ -42,16 +43,17 @@ public class PropertyController {
     private ArrayList<Transport> transportArrayList = new ArrayList<Transport>();
     private ArrayList<Maps> mapsArrayList = new ArrayList<Maps>();
     private List<Route> routeArrayList = new ArrayList<Route>();
+    private List<Price> priceList = new ArrayList<Price>();
 
 
 
-    public RouteUser getRouteUser() {
+    /*public RouteUser getRouteUser() {
         return routeUser;
     }
 
     public void setRouteUser(RouteUser routeUser) {
         this.routeUser = routeUser;
-    }
+    }*/
 
 
     @Autowired(required = true)
@@ -90,13 +92,14 @@ public class PropertyController {
 
 
     @RequestMapping(value = "/client/showClient", method = RequestMethod.POST)
-    public String getListRoutes(@ModelAttribute("listRoutes") ArrayList<Route> routeArrayListGet){
+    public String getListRoutes(@ModelAttribute("routeUser") RouteUser routeUser){
         Integer start = ((Points)pointsService.getByLoginP(routeUser.getStart())).getIdPoint();
         Integer end = ((Points)pointsService.getByLoginP(routeUser.getEnd())).getIdPoint();
-        this.routeArrayList = routeService.getRouteByEndStart(start,end);
+        this.routeArrayList = (List <Route>) routeService.getRouteByEndStart(start,end);
         for (Route r:this.routeArrayList) {
             System.out.println(r.getNameOfRoute());
         }
+        priceList = (List <Price>)routeService.listOfRoute(routeArrayList, routeUser.getMass());
         return "redirect:http://localhost:8080/show_routes";
     }
 
@@ -119,20 +122,28 @@ public class PropertyController {
 
     @RequestMapping(value = "client", method = RequestMethod.GET)
     public String addClient(Model model){
-        model.addAttribute("routeUser", this.routeUser = new RouteUser());
+        model.addAttribute("routeUser", new RouteUser());
+        model.addAttribute("user", UserController.getCurrentUser());
         return "AB_client";
     }
 
     @RequestMapping(value = "show_routes", method = RequestMethod.GET)
     public String showClientRoute(Model model){
-        model.addAttribute("listRoutes", this.routeArrayList);
+        model.addAttribute("listRoutes", this.priceList);
+        model.addAttribute("user", UserController.getCurrentUser());
         return "show_routes";
     }
 
     @RequestMapping(value = "carrier", method = RequestMethod.GET)
     public String addCarrier(Model model){
         this.mapsCarriers.removeAll(this.mapsCarriers);
+        this.priceList.removeAll(this.priceList);
+        this.routeArrayList.removeAll(this.routeArrayList);
+        this.mapsArrayList.removeAll(this.mapsArrayList);
+        this.transportArrayList.removeAll(this.transportArrayList);
         model.addAttribute("routeCarrier", new RouteCarrier());
+        model.addAttribute("user", UserController.getCurrentUser());
+        System.out.println(UserController.getCurrentUser().getLogin());
         return "AB_carrier";
     }
 
@@ -140,6 +151,7 @@ public class PropertyController {
     public String addAb(Model model){
         model.addAttribute("routeCarrier", this.routeCarrier);
         model.addAttribute("mapsCarrier", new MapsCarrier());
+        model.addAttribute("user", UserController.getCurrentUser());
         if(currentMaps!=0) {
             model.addAttribute("start", this.mapsCarriers.get(this.currentMaps - 1).getEndPointName());
             model.addAttribute("currentMaps", this.currentMaps);

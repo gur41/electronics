@@ -66,7 +66,11 @@ public class TransportDaoImpl implements Dao<Transport>, DaoTransport<Transport>
 
     @Override
     public List<Transport> list() {
-        return null;
+        Session session = sessionFactory.openSession();
+        List<Transport> userList = session.createQuery("from Transport").list();
+
+        session.close();
+        return userList;
     }
 
     @Override
@@ -82,6 +86,7 @@ public class TransportDaoImpl implements Dao<Transport>, DaoTransport<Transport>
             transport1 = session.createQuery("from Transport where transport_name = '" + transport.getTransportName() + "' and speed = '" + transport.getSpeed() + "' and coefficient = '" + transport.getCoefficient() + "' and max_weight = '" + transport.getMaxWeight() + "'").list();
             logger.info("Point exist: ");
             session.close();
+            System.out.println("ID_TRANSPORT: "+transport1.get(0).getIdTransport());
             return transport1.get(0);
         } else
             return null;
