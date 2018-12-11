@@ -74,10 +74,10 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
-                <%-- <li class="">
-                    <a href="<c:url value="/flowers_admin"/>" target="_self">Цветы</a>
+                 <li class="">
+                    <a href="<c:url value="/order_client"/>" target="_self">Заявки</a>
                 </li>
-                <li class="">
+                <%--<li class="">
                     <a href="<c:url value="/bouquets_admin"/>" target="_self">Букеты</a>
                 </li>
                 <li class="">

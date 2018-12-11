@@ -7,7 +7,16 @@
 <html>
 <head>
     <title>Пункт прибытия/назначения</title>
+   <%--<script src="../../resources/js/modernizr.custom.63321.js"></script>
+  <script src="../../resources/js/jquery-1.11.1.min.js"></script>
+  <script src="../../resources/js/bootstrap.min.js"></script>
 
+   <link rel="stylesheet" href="../../resources/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../resources/css/font-awesome.min.css" />
+<link rel="stylesheet" href="../../resources/css/menu_style.css" />
+<link rel="stylesheet" href="../../resources/css/table.css" />
+<link rel="stylesheet" href="../../resources/css/dopstyle.css" />
+<link rel="stylesheet" href="../../resources/css/autor_style.css" />--%>
 <!-- Раскомментировать для jsp -->
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/autor_style.css" />"/>
     <script  src="${pageContext.request.contextPath}/resources/js/modernizr.custom.63321.js"></script>
@@ -20,7 +29,9 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/table.css" />" />
     <link rel="stylesheet" href="<c:url value="/resources/css/modal.css" />" />
     <link rel="shortcut icon" href="<c:url value="/resources/images/fon1.jpg"/>" type="image/png">
-
+    <%--<link rel="stylesheet" href="<c:url value="/resources/css/form.css" />"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/client.css" />"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/modal.css" />"/>--%>
 
 </head>
 <body>
@@ -64,7 +75,7 @@
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="">
-                    <a href="<c:url value="/order_carrier"/>" target="_self">Заявки</a>
+                    <a href="<c:url value="/client"/>" target="_self">Просмотреть маршруты</a>
                 </li>
                 <%-- <li class="">
                     <a href="<c:url value="/bouquets_admin"/>" target="_self">Букеты</a>
@@ -124,50 +135,42 @@
 
 
                         <div class="headname">
-                            <h1>Форма для оформления машрута</h1>
+                            <h1>Список заявок</h1>
                         </div>
 
-                         <c:url var="addAction" value="/carrier/showCarrier"/>
+                        <c:if test="${!empty listOrderUser}">
+                            <table class="tg">
+                                <tr>
+                                    <th width="40">ID</th>
+                                    <th width="80">Фамилия</th>
+                                    <th width="80">Имя</th>
+                                    <th width="80">Номер телефона</th>
+                                    <th width="80">E-mail</th>
+                                    <th width="120">Цена доставки товара</th>
+                                    <th width="120">Вес груза</th>
+                                    <th width="80">Статус</th>
+                                </tr>
+                                <c:forEach items="${listOrderUser}" var="orderUser">
+                                    <tr>
+                                        <td>${orderUser.idRouteOrder}</td>
+                                        <td>${orderUser.secondName}</td>
+                                        <td>${orderUser.firstName}</td>
+                                        <td>${orderUser.phone}</td>
+                                        <td>${orderUser.eMail}</td>
+                                        <td>${orderUser.price}</td>
+                                        <td>${orderUser.weight}</td>
+                                        <td>${orderUser.status}</td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </c:if>
 
-                        <form:form action="${addAction}" modelAttribute="routeCarrier" class="form-horizontal">
-
-
-                            <div class="form-group">
-                                <form:label path="start" class="col-sm-2 control-label">
-                                    <spring:message text="Пункт отправления" />
-                                </form:label>
-                                <div class="col-sm-4">
-                                    <form:input path="start" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)" title="Используйте латинские или русские символы." class="form-control"/>
-                                </div>
+                        <c:if test="${empty listOrderUser}">
+                            <div class="headname">
+                                <h1>Список заявок пуст</h1>
                             </div>
-                            <div class="form-group">
-                                <form:label path="end" class="col-sm-2 control-label">
-                                    <spring:message text="Пункт назначения"/>
-                                </form:label>
-                                <div class="col-sm-4">
-                                    <form:input path="end" pattern="(.[a-zA-Zа-яА-Я\s0-9,ёЁ_-]*)" title="Используйте латинские или русские символы." class="form-control"/>
-                                </div>
-                            </div>
+                        </c:if>
 
-                            <div class="form-group">
-                                <form:label path="quantity" class="col-sm-2 control-label">
-                                    <spring:message text="Количество промежуточных точек"/>
-                                </form:label>
-                                <div class="col-sm-2">
-                                    <form:input path="quantity" pattern="^[+]?([0-9]*[.])?[0-9]+$" title="Используйте число для ввода." class="form-control"/>
-                                </div>
-                            </div>
-
-                      
-
-
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                        <input type="submit" class="btn btn-success"
-                                               value="<spring:message text="Продолжить"/>"/>
-                                </div>
-                            </div>
-                        </form:form>
                     </section>
 
                 </div>

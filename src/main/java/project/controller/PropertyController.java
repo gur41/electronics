@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import project.clasess.MapsCarrier;
@@ -32,10 +33,12 @@ public class PropertyController {
     private Service pointsService;
     private ServiceRoute routeService;
     private Service transportService;
+    private Service orderUserService;
     private ServiceTransport transportserviceTransport;
     private RouteCarrier routeCarrier;
-    //private RouteUser routeUser;
+    private RouteUser routeUser;
 
+    private Integer id;
     private Service mapsService;
     private int currentMaps;
     private List points =new ArrayList <Points>();
@@ -54,6 +57,12 @@ public class PropertyController {
     public void setRouteUser(RouteUser routeUser) {
         this.routeUser = routeUser;
     }*/
+    @Autowired(required = true)
+    @Qualifier(value = "orderUserService")
+    public void setOrderUserService(Service orderUserService) {
+        this.orderUserService = orderUserService;
+    }
+
 
 
     @Autowired(required = true)
@@ -93,6 +102,7 @@ public class PropertyController {
 
     @RequestMapping(value = "/client/showClient", method = RequestMethod.POST)
     public String getListRoutes(@ModelAttribute("routeUser") RouteUser routeUser){
+        this.routeUser = routeUser;
         Integer start = ((Points)pointsService.getByLoginP(routeUser.getStart())).getIdPoint();
         Integer end = ((Points)pointsService.getByLoginP(routeUser.getEnd())).getIdPoint();
         this.routeArrayList = (List <Route>) routeService.getRouteByEndStart(start,end);
@@ -122,6 +132,11 @@ public class PropertyController {
 
     @RequestMapping(value = "client", method = RequestMethod.GET)
     public String addClient(Model model){
+        this.mapsCarriers.removeAll(this.mapsCarriers);
+        this.priceList.removeAll(this.priceList);
+        this.routeArrayList.removeAll(this.routeArrayList);
+        this.mapsArrayList.removeAll(this.mapsArrayList);
+        this.transportArrayList.removeAll(this.transportArrayList);
         model.addAttribute("routeUser", new RouteUser());
         model.addAttribute("user", UserController.getCurrentUser());
         return "AB_client";
@@ -129,10 +144,40 @@ public class PropertyController {
 
     @RequestMapping(value = "show_routes", method = RequestMethod.GET)
     public String showClientRoute(Model model){
+        this.id = null;
         model.addAttribute("listRoutes", this.priceList);
         model.addAttribute("user", UserController.getCurrentUser());
+        model.addAttribute("orderUser", new OrderUser());
         return "show_routes";
     }
+
+    @RequestMapping(value = "add_order", method = RequestMethod.GET)
+    public String addOrder(Model model){
+        model.addAttribute("orderUser", new OrderUser());
+        return "add_order";
+    }
+
+
+    @RequestMapping(value = "/client/add_order", method = RequestMethod.POST)
+    public String addOrderClient(@ModelAttribute("orderUser") OrderUser orderUser){
+        Price price=null;
+        for (Price p:priceList) {
+            if(p.getIdRoute().equals(id)) {
+                price = p;
+                break;
+            }
+        }
+        System.out.println("id : "+id);
+        System.out.println("mass : "+this.routeUser.getMass());
+        System.out.println("id user : "+UserController.getCurrentUser().getId());
+        System.out.println("price : "+price.getIdRoute());
+        if(price != null) {
+            this.orderUserService.add(new OrderUser(price.getPrice(), price.getIdRoute(), this.routeUser.getMass(), UserController.getCurrentUser().getId(), orderUser.getPhone(), orderUser.getFirstName(), orderUser.getSecondName(), "Оформлена", orderUser.geteMail()));
+            this.routeUser = null;
+        }
+        return "redirect:/client";
+    }
+
 
     @RequestMapping(value = "carrier", method = RequestMethod.GET)
     public String addCarrier(Model model){
@@ -145,6 +190,28 @@ public class PropertyController {
         model.addAttribute("user", UserController.getCurrentUser());
         System.out.println(UserController.getCurrentUser().getLogin());
         return "AB_carrier";
+    }
+
+    @RequestMapping(value = "/order_carrier", method = RequestMethod.GET)
+    public String showCarrier(Model model){
+
+        model.addAttribute("user", UserController.getCurrentUser());
+        return "order_carrier";
+    }
+
+    @RequestMapping(value = "/order_client", method = RequestMethod.GET)
+    public String showClient(Model model){
+        List<OrderUser> orderUsers = null;
+        orderUsers = this.orderUserService.list();
+        for (OrderUser o:orderUsers) {
+            if(!o.getIdUserOrder().equals(UserController.getCurrentUser().getId())){
+                orderUsers.remove(o);
+            }
+        }
+        System.out.println("size : "+ orderUsers.size());
+        model.addAttribute("listOrderUser", orderUsers);
+        model.addAttribute("user", UserController.getCurrentUser());
+        return "order_client";
     }
 
     @RequestMapping(value = "add_AB", method = RequestMethod.GET)
@@ -161,6 +228,13 @@ public class PropertyController {
             model.addAttribute("currentMaps", this.currentMaps);
         }
         return "add_A_B";
+    }
+
+    @RequestMapping("/editOrderUser/{id}")
+    public String editOrder(@PathVariable("id") Integer id, Model model){
+        //this.orderUserService.add(new OrderUser());
+        this.id = id;
+        return "redirect:http://localhost:8080/add_order";
     }
 
     @RequestMapping(value = "/nextAB", method = RequestMethod.POST)
@@ -189,7 +263,7 @@ public class PropertyController {
                 transportArrayList.add(transport);
                 System.out.println(i);
             }
-            routeService.add(new Route(str, ((Points) pointsService.getByLoginP(routeCarrier.getStart())).getIdPoint(), ((Points)pointsService.getByLoginP(routeCarrier.getEnd())).getIdPoint()));
+            routeService.add(new Route(str, ((Points) pointsService.getByLoginP(routeCarrier.getStart())).getIdPoint(), ((Points)pointsService.getByLoginP(routeCarrier.getEnd())).getIdPoint(), UserController.getCurrentUser().getId()));
             for (int i=0;i<mapsCarriers.size();i++) {
                 System.out.println(mapsCarriers.size());
                 Maps maps = null;

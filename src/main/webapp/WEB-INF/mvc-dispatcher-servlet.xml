@@ -41,7 +41,7 @@
         <property name="annotatedClasses">
             <list>
                 <value>project.clasess.Property</value>
-                <value>project.model.User</value>
+                <value>last.User</value>
                 <!--<value>project.model.Route</value>
                 <value>project.model.Maps</value>
                 <value>project.model.Transport</value>
@@ -50,6 +50,7 @@
                 <value>last.Maps</value>
                 <value>last.Route</value>
                 <value>last.Points</value>
+                <value>last.OrderUser</value>
 
             </list>
         </property>
@@ -123,6 +124,16 @@
     <bean id="mapsService" class="project.service.MapsServiceImpl">
         <property name="mapsDao" ref="mapsDao"/>
     </bean>
+
+
+    <bean id="orderUserDao" class="project.dao.OrderUserDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="orderUserService" class="project.service.OrderUserServiceImpl">
+        <property name="orderUserDao" ref="orderUserDao"/>
+    </bean>
+
 
     <context:component-scan base-package="java"/>
 

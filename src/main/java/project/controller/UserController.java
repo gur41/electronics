@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import project.clasess.Property;
-import project.model.User;
+import last.User;
 import project.service.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +39,7 @@ public class UserController {
 
     @RequestMapping(value = "/users/add", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user){
-        if(user.getId() == 0){
+        if(user.getId() == null){
             this.userService.add(user);
         }else {
             this.userService.update(user);
@@ -53,7 +53,7 @@ public class UserController {
 
 
 
-    @RequestMapping("edit/{id}")
+    @RequestMapping("/edit/{id}")
     public String editUser(@PathVariable("id") int id, Model model){
         model.addAttribute("user", this.userService.getById(id));
         model.addAttribute("listUsers", this.userService.list());

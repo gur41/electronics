@@ -153,7 +153,7 @@
                                         <td>${route.nameOfRoute}</td>
                                         <td>${route.price}</td>
                                         <td>${route.description}</td>
-                                        <td><a href="<c:url value='/editFlower/${route.idRoute}'/>">Выполнить заявку</a></td>
+                                        <td><a href="<c:url value='/editOrderUser/${route.idRoute}'/>">Выполнить заявку</a></td>
                                     </tr>
                                 </c:forEach>
                             </table>
@@ -165,7 +165,7 @@
                             </div>
                         </c:if>
 
-                         <c:url var="addAction" value="/client/showClient"/>
+                        <%-- <c:url var="addAction" value="/client/showClient"/>
 
                         <div class="headname"><p></p>
 
@@ -178,7 +178,7 @@
                                     </div>
                                 </div>
                             </form:form>
-                        </div>
+                        </div>--%>
                     </section>
 
                 </div>

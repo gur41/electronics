@@ -131,7 +131,7 @@ public class Maps {
     }
 
     @ManyToOne
-    @JoinColumn(name = "start_point_id", referencedColumnName = "id_point", insertable = false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "start_point_id", referencedColumnName = "id_point", insertable = false, updatable = false)})
     public Points getPointsByStartPointId() {
         return pointsByStartPointId;
     }
@@ -141,7 +141,7 @@ public class Maps {
     }
 
     @ManyToOne
-    @JoinColumn(name = "end_point_id", referencedColumnName = "id_point", insertable = false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "end_point_id", referencedColumnName = "id_point", insertable = false, updatable = false)})
     public Points getPointsByEndPointId() {
         return pointsByEndPointId;
     }
@@ -151,7 +151,7 @@ public class Maps {
     }
 
     @ManyToOne
-    @JoinColumn(name = "route", referencedColumnName = "id_route", insertable = false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "route", referencedColumnName = "id_route", insertable = false, updatable = false)})
     public Route getRouteByRoute() {
         return routeByRoute;
     }
@@ -161,7 +161,7 @@ public class Maps {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_transport_in_maps", referencedColumnName = "id_transport", insertable = false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "id_transport_in_maps", referencedColumnName = "id_transport", insertable = false, updatable = false)})
     public Transport getTransportByIdTransportInMaps() {
         return transportByIdTransportInMaps;
     }

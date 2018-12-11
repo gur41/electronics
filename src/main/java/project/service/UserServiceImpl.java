@@ -2,7 +2,7 @@ package project.service;
 
 import org.springframework.transaction.annotation.Transactional;
 import project.dao.Dao;
-import project.model.User;
+import last.User;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -14,11 +14,11 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="MySQL - logistics@localhost" uuid="9eafe2e8-ff55-4d35-a1b4-99726604012d">
+    <data-source source="LOCAL" name="MySQL - log@localhost" uuid="9eafe2e8-ff55-4d35-a1b4-99726604012d">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/logistics</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/log</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />

@@ -12,13 +12,9 @@ public class Route {
     private Collection<Maps> mapsByIdRoute;
     private Points pointsByStartPointOfRoute;
     private Points pointsByEndPointOfRoute;
-
-    @Id
-    @Column(name = "id_route", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getIdRoute() {
-        return idRoute;
-    }
+    private Integer idUserCreatedRoute;
+    private Collection<OrderUser> orderUsersByIdRoute;
+    private User userByIdUserCreatedRoute;
 
     public Route(String nameOfRoute, Integer startPointOfRoute, Integer endPointOfRoute) {
         this.nameOfRoute = nameOfRoute;
@@ -26,7 +22,21 @@ public class Route {
         this.endPointOfRoute = endPointOfRoute;
     }
 
+    public Route(String nameOfRoute, Integer startPointOfRoute, Integer endPointOfRoute, Integer idUserCreatedRoute) {
+        this.nameOfRoute = nameOfRoute;
+        this.startPointOfRoute = startPointOfRoute;
+        this.endPointOfRoute = endPointOfRoute;
+        this.idUserCreatedRoute = idUserCreatedRoute;
+    }
+
     public Route() {
+    }
+
+    @Id
+    @Column(name = "id_route", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer getIdRoute() {
+        return idRoute;
     }
 
     public void setIdRoute(Integer idRoute) {
@@ -99,7 +109,7 @@ public class Route {
     }
 
     @ManyToOne
-    @JoinColumn(name = "start_point_of_route", referencedColumnName = "id_point", insertable = false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "start_point_of_route", referencedColumnName = "id_point", insertable = false, updatable = false)})
     public Points getPointsByStartPointOfRoute() {
         return pointsByStartPointOfRoute;
     }
@@ -109,12 +119,41 @@ public class Route {
     }
 
     @ManyToOne
-    @JoinColumn(name = "end_point_of_route", referencedColumnName = "id_point", insertable = false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "end_point_of_route", referencedColumnName = "id_point", insertable = false, updatable = false)})
     public Points getPointsByEndPointOfRoute() {
         return pointsByEndPointOfRoute;
     }
 
     public void setPointsByEndPointOfRoute(Points pointsByEndPointOfRoute) {
         this.pointsByEndPointOfRoute = pointsByEndPointOfRoute;
+    }
+
+    @Basic
+    @Column(name = "id_user_created_route", nullable = true)
+    public Integer getIdUserCreatedRoute() {
+        return idUserCreatedRoute;
+    }
+
+    public void setIdUserCreatedRoute(Integer idUserCreatedRoute) {
+        this.idUserCreatedRoute = idUserCreatedRoute;
+    }
+
+    @OneToMany(mappedBy = "routeByIdRouteOrder")
+    public Collection<OrderUser> getOrderUsersByIdRoute() {
+        return orderUsersByIdRoute;
+    }
+
+    public void setOrderUsersByIdRoute(Collection<OrderUser> orderUsersByIdRoute) {
+        this.orderUsersByIdRoute = orderUsersByIdRoute;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_user_created_route", referencedColumnName = "id", insertable = false, updatable = false )
+    public User getUserByIdUserCreatedRoute() {
+        return userByIdUserCreatedRoute;
+    }
+
+    public void setUserByIdUserCreatedRoute(User userByIdUserCreatedRoute) {
+        this.userByIdUserCreatedRoute = userByIdUserCreatedRoute;
     }
 }

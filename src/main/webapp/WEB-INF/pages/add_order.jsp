@@ -7,7 +7,16 @@
 <html>
 <head>
     <title>Пункт прибытия/назначения</title>
+   <%--<script src="../../resources/js/modernizr.custom.63321.js"></script>
+  <script src="../../resources/js/jquery-1.11.1.min.js"></script>
+  <script src="../../resources/js/bootstrap.min.js"></script>
 
+   <link rel="stylesheet" href="../../resources/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../resources/css/font-awesome.min.css" />
+<link rel="stylesheet" href="../../resources/css/menu_style.css" />
+<link rel="stylesheet" href="../../resources/css/table.css" />
+<link rel="stylesheet" href="../../resources/css/dopstyle.css" />
+<link rel="stylesheet" href="../../resources/css/autor_style.css" />--%>
 <!-- Раскомментировать для jsp -->
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/autor_style.css" />"/>
     <script  src="${pageContext.request.contextPath}/resources/js/modernizr.custom.63321.js"></script>
@@ -20,7 +29,9 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/table.css" />" />
     <link rel="stylesheet" href="<c:url value="/resources/css/modal.css" />" />
     <link rel="shortcut icon" href="<c:url value="/resources/images/fon1.jpg"/>" type="image/png">
-
+    <%--<link rel="stylesheet" href="<c:url value="/resources/css/form.css" />"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/client.css" />"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/modal.css" />"/>--%>
 
 </head>
 <body>
@@ -63,10 +74,10 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="">
-                    <a href="<c:url value="/order_carrier"/>" target="_self">Заявки</a>
-                </li>
                 <%-- <li class="">
+                    <a href="<c:url value="/flowers_admin"/>" target="_self">Цветы</a>
+                </li>
+                <li class="">
                     <a href="<c:url value="/bouquets_admin"/>" target="_self">Букеты</a>
                 </li>
                 <li class="">
@@ -124,50 +135,60 @@
 
 
                         <div class="headname">
-                            <h1>Форма для оформления машрута</h1>
+                            <h1>Форма для оформления доставки товара</h1>
                         </div>
 
-                         <c:url var="addAction" value="/carrier/showCarrier"/>
+                        <c:url var="addAction" value="/client/add_order"/>
 
-                        <form:form action="${addAction}" modelAttribute="routeCarrier" class="form-horizontal">
-
+                        <form:form action="${addAction}" modelAttribute="orderUser" class="form-horizontal">
 
                             <div class="form-group">
-                                <form:label path="start" class="col-sm-2 control-label">
-                                    <spring:message text="Пункт отправления" />
+                                <form:label path="firstName" class="col-sm-2 control-label">
+                                    <spring:message text="Имя" />
                                 </form:label>
                                 <div class="col-sm-4">
-                                    <form:input path="start" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)" title="Используйте латинские или русские символы." class="form-control"/>
+                                    <form:input path="firstName" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)" title="Используйте латинские или русские символы." class="form-control"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <form:label path="end" class="col-sm-2 control-label">
-                                    <spring:message text="Пункт назначения"/>
+                                <form:label path="secondName" class="col-sm-2 control-label">
+                                    <spring:message text="Фамилия"/>
                                 </form:label>
                                 <div class="col-sm-4">
-                                    <form:input path="end" pattern="(.[a-zA-Zа-яА-Я\s0-9,ёЁ_-]*)" title="Используйте латинские или русские символы." class="form-control"/>
+                                    <form:input path="secondName" pattern="(.[a-zA-Zа-яА-Я\s,ёЁ_-]*)" title="Используйте латинские или русские символы." class="form-control"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <form:label path="quantity" class="col-sm-2 control-label">
-                                    <spring:message text="Количество промежуточных точек"/>
+                                <form:label path="phone" class="col-sm-2 control-label">
+                                    <spring:message text="Номер телефона"/>
                                 </form:label>
                                 <div class="col-sm-2">
-                                    <form:input path="quantity" pattern="^[+]?([0-9]*[.])?[0-9]+$" title="Используйте число для ввода." class="form-control"/>
+                                    <form:input path="phone" pattern="^[+]?([0-9]*[.])?[0-9]+$" title="Используйте число для ввода." class="form-control"/>
                                 </div>
                             </div>
-
-                      
-
 
                             <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                        <input type="submit" class="btn btn-success"
-                                               value="<spring:message text="Продолжить"/>"/>
+                                <form:label path="eMail" class="col-sm-2 control-label">
+                                    <spring:message text="E-mail"/>
+                                </form:label>
+                                <div class="col-sm-2">
+                                    <form:input path="eMail" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)" title="Используйте число для ввода." class="form-control"/>
                                 </div>
                             </div>
-                        </form:form>
+
+                        <c:url var="addAction" value="/client/showClient"/>
+
+                        <div class="headname"><p></p>
+
+                                <div class="form-group">
+                                   <div class="col-sm-offset-2 col-sm-10">
+                                        <input type="submit" class="btn btn-success"
+                                               value="<spring:message text="Выполнить заявку"/>"/>
+                                    </div>
+                                </div>
+                            </form:form>
+                        </div>
                     </section>
 
                 </div>
