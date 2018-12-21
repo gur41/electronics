@@ -7,27 +7,28 @@
 <html>
 <head>
     <title>Пункт прибытия/назначения</title>
-   <%--<script src="../../resources/js/modernizr.custom.63321.js"></script>
-  <script src="../../resources/js/jquery-1.11.1.min.js"></script>
-  <script src="../../resources/js/bootstrap.min.js"></script>
+    <%--<script src="../../resources/js/modernizr.custom.63321.js"></script>
+   <script src="../../resources/js/jquery-1.11.1.min.js"></script>
+   <script src="../../resources/js/bootstrap.min.js"></script>
 
-   <link rel="stylesheet" href="../../resources/css/bootstrap.min.css" />
-<link rel="stylesheet" href="../../resources/css/font-awesome.min.css" />
-<link rel="stylesheet" href="../../resources/css/menu_style.css" />
-<link rel="stylesheet" href="../../resources/css/table.css" />
-<link rel="stylesheet" href="../../resources/css/dopstyle.css" />
-<link rel="stylesheet" href="../../resources/css/autor_style.css" />--%>
-<!-- Раскомментировать для jsp -->
+    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css" />
+ <link rel="stylesheet" href="../../resources/css/font-awesome.min.css" />
+ <link rel="stylesheet" href="../../resources/css/menu_style.css" />
+ <link rel="stylesheet" href="../../resources/css/table.css" />
+ <link rel="stylesheet" href="../../resources/css/dopstyle.css" />
+ <link rel="stylesheet" href="../../resources/css/autor_style.css" />--%>
+    <!-- Раскомментировать для jsp -->
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/autor_style.css" />"/>
-    <script  src="${pageContext.request.contextPath}/resources/js/modernizr.custom.63321.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/modernizr.custom.63321.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/search.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/download.js"></script>
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/menu_style.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="/resources/css/table.css" />" />
-    <link rel="stylesheet" href="<c:url value="/resources/css/modal.css" />" />
+    <link rel="stylesheet" href="<c:url value="/resources/css/table.css" />"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/modal.css" />"/>
     <link rel="shortcut icon" href="<c:url value="/resources/images/fon1.jpg"/>" type="image/png">
     <%--<link rel="stylesheet" href="<c:url value="/resources/css/form.css" />"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/client.css" />"/>
@@ -49,7 +50,8 @@
             <div class="col-md-4">
                 <form class="navbar-form navbar-left" role="search">
                     <input type="text" id="text-to-find" value="" class="form-control" placeholder="Найти">
-                    <button type="submit" class="btn btn-default" onclick="javascript: FindOnPage('text-to-find'); return false;">
+                    <button type="submit" class="btn btn-default"
+                            onclick="javascript: FindOnPage('text-to-find'); return false;">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </button>
                 </form>
@@ -74,13 +76,16 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
-                 <li class="">
+                <li class="">
                     <a href="<c:url value="/order_client"/>" target="_self">Заявки</a>
                 </li>
-                <li class="">
-                    <a href="<c:url value="/note_admin"/>" target="_self">Ноутбук</a>
+                <%-- <li class="">
+                    <a href="<c:url value="/flowers_admin"/>" target="_self">Цветы</a>
                 </li>
-                <%--<li class="">
+                <li class="">
+                    <a href="<c:url value="/bouquets_admin"/>" target="_self">Букеты</a>
+                </li>
+                <li class="">
                     <a href="<c:url value="/compositions_admin"/>" target="_self">Копмозиции</a>
                 </li>
                 <li class="">
@@ -91,8 +96,9 @@
                 </li> --%>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                 <li class="dropdown">
-                    <a href="<c:url value="/users/currentUser"/>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <li class="dropdown">
+                    <a href="<c:url value="/users/currentUser"/>" class="dropdown-toggle" data-toggle="dropdown"
+                       role="button" aria-expanded="false">
                         <c:choose>
                             <c:when test="${user.login ne null}">
                                 ${user.login}
@@ -138,47 +144,50 @@
                             <h1>Форма для оформления доставки товара</h1>
                         </div>
 
-                         <c:url var="addAction" value="/client/showClient"/>
+                        <c:url var="addAction" value="/note_admin_common/add"/>
 
-                        <form:form action="${addAction}" modelAttribute="routeUser" class="form-horizontal">
+                        <form:form action="${addAction}" modelAttribute="common" class="form-horizontal">
 
 
-                            <div class="form-group">
-                                <form:label path="start" class="col-sm-2 control-label">
-                                    <spring:message text="Пункт отправления" />
-                                </form:label>
-                                <div class="col-sm-4">
-                                    <form:input path="start" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)" title="Используйте латинские или русские символы." class="form-control"/>
+                        <div class="form-group">
+                            <form:label path="timeEnter" class="col-sm-2 control-label">
+                                <spring:message text="Дата выхода на рынок"/>
+                            </form:label>
+                            <div class="col-sm-2">
+                                <form:input path="timeEnter" pattern="(.[0-9]*)"
+                                            title="Используйте латинские или русские символы." class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label path="type" class="col-sm-2 control-label">
+                                <spring:message text="Тип"/>
+                            </form:label>
+                            <div class="col-sm-2">
+                                <form:input path="type" pattern="(.[a-zA-Zа-яА-Я\s,ёЁ_-]*)"
+                                            title="Используйте латинские или русские символы." class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="transformer" class="col-sm-2 control-label">
+                                <spring:message text="Трансформер"/>
+                            </form:label>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="transformer" checked="true" value="1"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <form:label path="end" class="col-sm-2 control-label">
-                                    <spring:message text="Пункт назначения"/>
-                                </form:label>
-                                <div class="col-sm-4">
-                                    <form:input path="end" pattern="(.[a-zA-Zа-яА-Я\s0-9,ёЁ_-]*)" title="Используйте латинские или русские символы." class="form-control"/>
-                                </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <input type="submit" class="btn btn-success"
+                                       value="<spring:message text="Продолжить"/>"/>
                             </div>
-
-                            <div class="form-group">
-                                <form:label path="mass" class="col-sm-2 control-label">
-                                    <spring:message text="Объемная масса груза"/> 
-                                </form:label>
-                                <div class="col-sm-2">
-                                    <form:input path="mass" pattern="^[+]?([0-9]*[.])?[0-9]+$" title="Используйте число для ввода." class="form-control"/>
-                                </div>
-                            </div>
-
-                      
-
-
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                        <input type="submit" class="btn btn-success"
-                                               value="<spring:message text="Показать маршруты"/>"/>
-                                </div>
-                            </div>
-                        </form:form>
+                        </div>
+                    </form:form>
+                        </div>
                     </section>
 
                 </div>
@@ -188,11 +197,12 @@
 
     <footer>
         <div class="container">
-            <div style="padding: 10px 0pt 0pt 30px; clear: both; color: #8d1645; font-size: 15px;">Все права защищены &copy; <?=date ('Y')?></div>
+            <div style="padding: 10px 0pt 0pt 30px; clear: both; color: #8d1645; font-size: 15px;">Все права защищены
+                &copy; <?=date ('Y')?></div>
         </div>
     </footer>
 </div>
-<<!-- Раскомментировать для jsp -->
+
 <script src="${pageContext.request.contextPath}/resources/js/jquery.backstretch.min.js"></script>
 <script>
     $.backstretch("resources/images/fon1.jpg");

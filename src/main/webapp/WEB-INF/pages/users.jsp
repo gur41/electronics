@@ -140,13 +140,13 @@
                                             <form:label for="login" path="login">
                                                 <spring:message text="Логин"/>
                                             </form:label>
-                                            <form:input id="loginField"  path="login" type="text" name="login" pattern="[a-zA-Z](.[a-zA-Z0-9_-]*)" title="Используйте латинские буквы для логина." placeholder="Логин или email" />
+                                            <form:input path="login" type="text" name="login" pattern="[a-zA-Z](.[a-zA-Z0-9_-]*)" title="Используйте латинские буквы для логина." placeholder="Логин или email" />
                                             <i class="icon-user icon-large"></i>
 
                                         </p>
                                     </tr>
 
-                                    <tr>
+                                    <%--<tr>
                                         <p class="field">
                                             <form:label for="role" path="role">
                                                 <spring:message text="Роль"/>
@@ -160,7 +160,7 @@
 
 
 
-                                    </tr>
+                                    </tr>--%>
 
                                     <tr>
                                         <p class="field">

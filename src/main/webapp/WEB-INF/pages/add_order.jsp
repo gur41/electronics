@@ -74,6 +74,9 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
+                <li class="">
+                    <a href="<c:url value="/order_client"/>" target="_self">Заявки</a>
+                </li>
                 <%-- <li class="">
                     <a href="<c:url value="/flowers_admin"/>" target="_self">Цветы</a>
                 </li>
@@ -173,7 +176,7 @@
                                     <spring:message text="E-mail"/>
                                 </form:label>
                                 <div class="col-sm-2">
-                                    <form:input path="eMail" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)" title="Используйте число для ввода." class="form-control"/>
+                                    <form:input path="eMail" pattern="(.[a-zA-Zа-яА-Я\sё,@.Ё_-]*)" title="Используйте число для ввода." class="form-control"/>
                                 </div>
                             </div>
 

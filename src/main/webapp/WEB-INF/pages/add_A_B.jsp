@@ -60,6 +60,9 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
+                <li class="">
+                    <a href="<c:url value="/order_carrier"/>" target="_self">Заявки</a>
+                </li>
                 <%--<li class="">
                     <a href="<c:url value="/flowers_admin"/>" target="_self">Цветы</a>
                 </li>

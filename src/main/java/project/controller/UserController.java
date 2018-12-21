@@ -40,12 +40,19 @@ public class UserController {
     @RequestMapping(value = "/users/add", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user){
         if(user.getId() == null){
-            this.userService.add(user);
+            user.setRole("client");
+            if(!this.userService.getByLogin(user.getLogin())) {
+                this.userService.add(user);
+                System.out.println("___________________________________");
+                System.out.println("ID :"+user.getId());
+            }
+            else return "redirect:/users";
         }else {
+            user.setRole("client");
             this.userService.update(user);
         }
         currentUser = user;
-        if (user.getRole().equals("Грузоперевозчик"))
+        if (user.getRole().equals("admin"))
             return "redirect:http://localhost:8080/carrier";
         else
             return "redirect:http://localhost:8080/client";
@@ -73,7 +80,6 @@ public class UserController {
     public String listUsers(Model model){
         model.addAttribute("user", new User());
         model.addAttribute("listUsers", this.userService.list());
-
         return "users";
     }
 

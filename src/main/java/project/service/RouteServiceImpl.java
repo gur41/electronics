@@ -66,7 +66,7 @@ public class RouteServiceImpl implements ServiceRoute<Route> {
     @Override
     @Transactional
     public List<Route> list() {
-        return null;
+        return this.routeDao.list();
     }
 
     @Override

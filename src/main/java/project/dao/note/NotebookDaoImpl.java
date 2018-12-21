@@ -1,17 +1,18 @@
-package project.dao;
+package project.dao.note;
 
 
-import last.OrderUser;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import project.dao.Dao;
+import project.model.note.Notebook;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderUserDaoImpl implements Dao<OrderUser> {
-    private static final Logger logger = LoggerFactory.getLogger(OrderUserDaoImpl.class);
+public class NotebookDaoImpl implements Dao<Notebook> {
+    private static final Logger logger = LoggerFactory.getLogger(NotebookDaoImpl.class);
 
     private SessionFactory sessionFactory;
 
@@ -20,32 +21,32 @@ public class OrderUserDaoImpl implements Dao<OrderUser> {
     }
 
     @Override
-    public void add(OrderUser orderUser) {
+    public void add(Notebook notebook) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.saveOrUpdate(orderUser);
+        session.save(notebook);
         session.getTransaction().commit();
         session.close();
-        logger.info("OrderUser successfully saved. OrderUser details: " + orderUser);
+        logger.info("Notebook successfully saved. Notebook details: " + notebook);
     }
 
     @Override
-    public void update(OrderUser orderUser) {
+    public void update(Notebook notebook) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.update(orderUser);
-        logger.info("OrderUser successfully update. OrderUser details: " + orderUser);
+        session.update(notebook);
+        logger.info("Notebook successfully update. Notebook details: " + notebook);
     }
 
     @Override
     public void remove(int id) {
 
         Session session = sessionFactory.openSession();
-        OrderUser orderUser = (OrderUser) session.get(OrderUser.class, new Integer(id));
+        Notebook notebook = (Notebook) session.get(Notebook.class, new Integer(id));
 
-        if(orderUser!=null){
-            logger.info("OrderUser successfully removed. OrderUser details: " + orderUser);
+        if(notebook!=null){
+            logger.info("Notebook successfully removed. Notebook details: " + notebook);
             session.beginTransaction();
-            session.delete(orderUser);
+            session.delete(notebook);
             session.getTransaction().commit();
         }
         session.close();
@@ -57,8 +58,8 @@ public class OrderUserDaoImpl implements Dao<OrderUser> {
 
         Session session = sessionFactory.openSession();
 
-        if(session.createQuery("from OrderUser where login = '"+login+"'").iterate().hasNext()){
-            logger.info("OrderUser exist: ");
+        if(session.createQuery("from Notebook where login = '"+login+"'").iterate().hasNext()){
+            logger.info("Notebook exist: ");
             session.close();
             return true;
         }
@@ -71,10 +72,10 @@ public class OrderUserDaoImpl implements Dao<OrderUser> {
 
 
     @Override
-    public OrderUser getById(int id) {
+    public Notebook getById(int id) {
         Session session = sessionFactory.openSession();
         try {
-            return (OrderUser) session.get(OrderUser.class, new Integer(id));
+            return (Notebook) session.get(Notebook.class, new Integer(id));
         } finally {
             session.close();
         }
@@ -88,23 +89,23 @@ public class OrderUserDaoImpl implements Dao<OrderUser> {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<OrderUser> list() {
+    public List<Notebook> list() {
         Session session = sessionFactory.openSession();
-        List<OrderUser> orderUserList = session.createQuery("from OrderUser").list();
+        List<Notebook> notebookList = session.createQuery("from Notebook").list();
 
-        for(OrderUser orderUser: orderUserList){
-            System.out.println("City list: " + orderUser);
+        for(Notebook notebook: notebookList){
+            System.out.println("City list: " + notebook);
         }
         session.close();
-        return orderUserList;
+        return notebookList;
     }
 
     @Override
-    public OrderUser getByLoginP(String login) {
+    public Notebook getByLoginP(String login) {
         Session session = sessionFactory.openSession();
-        List<OrderUser> points1 = new ArrayList<OrderUser>();
-        if(session.createQuery("from OrderUser where id_user_order = '"+login+"'").iterate().hasNext())
-            points1 = session.createQuery("from OrderUser where id_user_order = '"+login+"'").list();
+        List<Notebook> points1 = new ArrayList<Notebook>();
+        if(session.createQuery("from Notebook where login = '"+login+"'").iterate().hasNext())
+            points1 = session.createQuery("from Notebook where login = '"+login+"'").list();
         logger.info("Point exist: ");
         session.close();
         if(points1.size() == 0)

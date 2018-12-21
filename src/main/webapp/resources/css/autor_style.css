@@ -15,10 +15,22 @@
     margin: 0;
 }
 
-.clearfix:after {
-    content: "";
+.checkbox label:after,
+.radio label:after {
+    content: '';
     display: table;
     clear: both;
+}
+
+.double {
+    zoom: 1.5;
+    transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    position: relative;
+    left: -100px;
 }
 
 /*ФОН ФОРМЫ АВТОРИЗАЦИИ*/
@@ -29,7 +41,7 @@
     position: relative;
 
     /* Styles */
-  background: #fffaf6;
+  background: #E3F2F7;
     border-radius: 4px;
     color: #7e7975;
     box-shadow:

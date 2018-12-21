@@ -57,7 +57,10 @@ public class RouteDaoImpl implements DaoRoute<Route> {
 
     @Override
     public List<Route> list() {
-        return null;
+        Session session = sessionFactory.openSession();
+        List<Route> userList = session.createQuery("from Route").list();
+        session.close();
+        return userList;
     }
 
     @Override

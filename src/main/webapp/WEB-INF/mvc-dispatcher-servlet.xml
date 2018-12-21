@@ -42,15 +42,27 @@
             <list>
                 <value>project.clasess.Property</value>
                 <value>last.User</value>
-                <!--<value>project.model.Route</value>
-                <value>project.model.Maps</value>
-                <value>project.model.Transport</value>
-                <value>project.model.Points</value>-->
                 <value>last.Transport</value>
                 <value>last.Maps</value>
                 <value>last.Route</value>
                 <value>last.Points</value>
                 <value>last.OrderUser</value>
+                <value>project.model.note.CameraSoundForNotebook</value>
+                <value>project.model.note.CommonInformationForNotebook</value>
+                <value>project.model.note.ComplectationForNotebook</value>
+                <value>project.model.note.ConstructionForNotebook</value>
+                <value>project.model.note.DataForNotebook</value>
+                <value>project.model.note.FounctionsForNotebook</value>
+                <value>project.model.note.GraphicsForNotebook</value>
+                <value>project.model.note.InterfaceForNotebook</value>
+                <value>project.model.note.KeyboardAndTouchpadForNotebook</value>
+                <value>project.model.note.BatteryForNotebook</value>
+                <value>project.model.note.Notebook</value>
+                <value>project.model.note.ProcessorForNotebook</value>
+                <value>project.model.note.RamForNotebook</value>
+                <value>project.model.note.ScreenForNotebook</value>
+                <value>project.model.note.WeightAndSizeForNotebook</value>
+
 
             </list>
         </property>
@@ -76,6 +88,85 @@
     <bean id="userDao" class="project.dao.UserDaoImpl">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
+
+    <bean id="commonInformationForNotebookDao" class="project.dao.note.CommonInformationForNotebookDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="weightAndSizeForNotebookDao" class="project.dao.note.WeightAndSizeForNotebookDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="cameraSoundForNotebookDao" class="project.dao.note.CameraSoundForNotebookDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="constructionForNotebookDao" class="project.dao.note.ConstructionForNotebookDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="dataForNotebookDao" class="project.dao.note.DataForNotebookDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="founctionsForNotebookDao" class="project.dao.note.FounctionsForNotebookDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="graphicsForNotebook" class="project.dao.note.GraphicsForNotebookDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="interfaceForNotebookDao" class="project.dao.note.InterfaceForNotebookDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="keyboardAndTouchpadForNotebookDao" class="project.dao.note.KeyboardAndTouchpadForNotebookDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="batteryForNotebookDao" class="project.dao.note.BatteryForNotebookDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="notebookDao" class="project.dao.note.NotebookDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="processorForNotebookDao" class="project.dao.note.ProcessorForNotebookDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="ramForNotebookDao" class="project.dao.note.RamForNotebookDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="screenForNotebookDao" class="project.dao.note.ScreenForNotebookDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="complectationForNotebookDao" class="project.dao.note.ComplectationForNotebookDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="noteService" class="project.service.NoteServiceImpl">
+        <property name="commonInformationForNotebookDao" ref="commonInformationForNotebookDao"/>
+        <property name="complectationForNotebookDao" ref="complectationForNotebookDao"/>
+        <property name="screenForNotebookDao" ref="screenForNotebookDao"/>
+        <property name="ramForNotebookDao" ref="ramForNotebookDao"/>
+        <property name="processorForNotebookDao" ref="processorForNotebookDao"/>
+        <property name="notebookDao" ref="notebookDao"/>
+        <property name="batteryForNotebookDao" ref="batteryForNotebookDao"/>
+        <property name="keyboardAndTouchpadForNotebookDao" ref="keyboardAndTouchpadForNotebookDao"/>
+        <property name="interfaceForNotebookDao" ref="interfaceForNotebookDao"/>
+        <property name="weightAndSizeForNotebookDao" ref="weightAndSizeForNotebookDao"/>
+        <property name="cameraSoundForNotebookDao" ref="cameraSoundForNotebookDao"/>
+        <property name="constructionForNotebookDao" ref="constructionForNotebookDao"/>
+        <property name="dataForNotebookDao" ref="dataForNotebookDao"/>
+        <property name="founctionsForNotebookDao" ref="founctionsForNotebookDao"/>
+        <property name="graphicsForNotebookDao" ref="graphicsForNotebook"/>
+    </bean>
+
 
     <bean id="userService" class="project.service.UserServiceImpl">
         <property name="userDao" ref="userDao"/>

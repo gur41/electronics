@@ -194,23 +194,43 @@ public class PropertyController {
 
     @RequestMapping(value = "/order_carrier", method = RequestMethod.GET)
     public String showCarrier(Model model){
+        List<OrderUser> orderUsers = null;
+        List<OrderUser> orderUsers1 = new ArrayList<OrderUser>();
+        orderUsers = this.orderUserService.list();
 
+        List<Route> routeList = null;
+        List<Route> routeList1 = new ArrayList<Route>();
+        routeList = this.routeService.list();
+        for (Route r:routeList) {
+            if(r.getIdUserCreatedRoute().equals(UserController.getCurrentUser().getId()))
+                routeList1.add(r);
+        }
+        for (Route r:routeList1) {
+            for (OrderUser o:orderUsers) {
+                if(r.getIdRoute().equals(o.getIdRouteOrder())){
+                    orderUsers1.add(o);
+                }
+            }
+        }
+        model.addAttribute("listOrderUser", orderUsers1);
         model.addAttribute("user", UserController.getCurrentUser());
         return "order_carrier";
     }
 
     @RequestMapping(value = "/order_client", method = RequestMethod.GET)
     public String showClient(Model model){
+
         List<OrderUser> orderUsers = null;
+        List<OrderUser> orderUsers1 = new ArrayList<OrderUser>();
         orderUsers = this.orderUserService.list();
         for (OrderUser o:orderUsers) {
-            if(!o.getIdUserOrder().equals(UserController.getCurrentUser().getId())){
-                orderUsers.remove(o);
+            if(o.getIdUserOrder().equals(UserController.getCurrentUser().getId())){
+                orderUsers1.add(o);
             }
         }
-        System.out.println("size : "+ orderUsers.size());
-        model.addAttribute("listOrderUser", orderUsers);
+        model.addAttribute("listOrderUser", orderUsers1);
         model.addAttribute("user", UserController.getCurrentUser());
+
         return "order_client";
     }
 
@@ -235,6 +255,24 @@ public class PropertyController {
         //this.orderUserService.add(new OrderUser());
         this.id = id;
         return "redirect:http://localhost:8080/add_order";
+    }
+
+    @RequestMapping("/changeStatus/{string}")
+    public String changeStatus(@PathVariable("string") String string, Model model){
+        //this.orderUserService.add(new OrderUser());
+        String[] arg = string.split("_");
+        String status = arg[1];
+        Integer id = Integer.parseInt(arg[0]);
+        /*System.out.println("id "+arg[0]);
+        System.out.println("status "+status);
+        System.out.println("id "+id);
+        System.out.println("STRING : "+string);*/
+        OrderUser orderUser = (OrderUser) this.orderUserService.getById(id);
+        orderUser.setStatus(status);
+        this.orderUserService.update(orderUser);
+        System.out.println("status "+orderUser.getStatus());
+
+        return "redirect:/order_carrier";
     }
 
     @RequestMapping(value = "/nextAB", method = RequestMethod.POST)
