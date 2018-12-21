@@ -20,7 +20,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema log
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `log` DEFAULT CHARACTER SET utf8 ;
--- -----------------------------------------------------
+-- ------------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
 
