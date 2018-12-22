@@ -144,47 +144,78 @@
                             <h1>Форма для оформления доставки товара</h1>
                         </div>
 
-                        <c:url var="addAction" value="/note_admin/add"/>
+                        <c:url var="addAction" value="/note_admin_processor/add"/>
 
-                        <form:form action="${addAction}" modelAttribute="notebook" class="form-horizontal">
+                        <form:form action="${addAction}" modelAttribute="processor" class="form-horizontal">
 
 
                         <div class="form-group">
-                            <form:label path="mark" class="col-sm-2 control-label">
-                                <spring:message text="Производитель"/>
+                            <form:label path="platform" class="col-sm-2 control-label">
+                                <spring:message text="Платформа"/>
                             </form:label>
                             <div class="col-sm-4">
-                                <form:input path="mark" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)"
-                                            title="Используйте латинские или русские символы." class="form-control"/>
+                                <form:input path="platform" pattern="(.[a-zA-Z\s()0-9,_-]*)"
+                                            title="Используйте латинские символы и цифры." class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <form:label path="name" class="col-sm-2 control-label">
-                                <spring:message text="Модель"/>
+                            <form:label path="processorName" class="col-sm-2 control-label">
+                                <spring:message text="Процессор"/>
                             </form:label>
                             <div class="col-sm-4">
-                                <form:input path="name" pattern="(.[a-zA-Zа-яА-Я\s,ёЁ_-0-9]*)"
-                                            title="Используйте латинские или русские символы." class="form-control"/>
+                                <form:input path="processorName" pattern="(.[a-zA-Z\s()0-9,_-]*)"
+                                            title="Используйте латинские символы и цифры." class="form-control"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <form:label path="photo" class="col-sm-2 control-label">
-                                <spring:message text="Изображение"/>
+                            <form:label path="modelProcessor" class="col-sm-2 control-label">
+                                <spring:message text="Модель процессора"/>
                             </form:label>
-                            <div class="col-sm-2 control-label">
-                                <input type="file" id="fileElem" multiple accept="image/*" style="display:none"
-                                       onchange="handleFiles(this.files)">
-                                <a id="pictureName" name="g" href="javascript:doClick()"></a>
-                                <script>
-                                    var f = document.getElementById('pictureName');
-                                    f.innerHTML = "Выбрать изображение";
-                                </script>
-                                <div id="fileList">
-                                    <p></p>
-                                </div>
+                            <div class="col-sm-4">
+                                <form:input path="modelProcessor" pattern="(.[a-zA-Z\s()0-9,_-]*)"
+                                            title="Используйте латинские символы и цифры." class="form-control"/>
                             </div>
-                            <form:hidden id="picture_url" path="photo"/>
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="core" class="col-sm-2 control-label">
+                                <spring:message text="Количество ядер"/>
+                            </form:label>
+                            <div class="col-sm-4">
+                                <form:input path="core" pattern="(.[0-9]*)"
+                                            title="Используйте цифры." class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="frequency" class="col-sm-2 control-label">
+                                <spring:message text="Тактовая частота"/>
+                            </form:label>
+                            <div class="col-sm-4">
+                                <form:input path="frequency" pattern="(.[0-9]*)"
+                                            title="Используйте цифры." class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="frequency" class="col-sm-2 control-label">
+                                <spring:message text="Turbo-частота"/>
+                            </form:label>
+                            <div class="col-sm-4">
+                                <form:input path="turboFrequency" pattern="(.[0-9]*)"
+                                            title="Используйте цифры." class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="powerUsage" class="col-sm-2 control-label">
+                                <spring:message text="Энергопотребление процессора"/>
+                            </form:label>
+                            <div class="col-sm-4">
+                                <form:input path="powerUsage" pattern="(.[0-9]*)"
+                                            title="Используйте цифры." class="form-control"/>
+                            </div>
                         </div>
 
 

@@ -144,48 +144,84 @@
                             <h1>Форма для оформления доставки товара</h1>
                         </div>
 
-                        <c:url var="addAction" value="/note_admin/add"/>
+                        <c:url var="addAction" value="/note_admin_screen/add"/>
 
-                        <form:form action="${addAction}" modelAttribute="notebook" class="form-horizontal">
+                        <form:form action="${addAction}" modelAttribute="screen" class="form-horizontal">
 
 
                         <div class="form-group">
-                            <form:label path="mark" class="col-sm-2 control-label">
-                                <spring:message text="Производитель"/>
+                            <form:label path="diagonal" class="col-sm-2 control-label">
+                                <spring:message text="Диагональ экрана"/>
                             </form:label>
                             <div class="col-sm-4">
-                                <form:input path="mark" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)"
+                                <form:input path="diagonal" pattern="(.[0-9]*)"
+                                            title="Используйте цифры." class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label path="resolution" class="col-sm-2 control-label">
+                                <spring:message text="Разрешение экрана"/>
+                            </form:label>
+                            <div class="col-sm-4">
+                                <form:input path="resolution" pattern="(.[0-9]*)"
+                                            title="Используйте цифры." class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="technologi" class="col-sm-2 control-label">
+                                <spring:message text="Технология экрана"/>
+                            </form:label>
+                            <div class="col-sm-4">
+                                <form:input path="technologi" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)"
                                             title="Используйте латинские или русские символы." class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <form:label path="name" class="col-sm-2 control-label">
-                                <spring:message text="Модель"/>
+                            <form:label path="surface" class="col-sm-2 control-label">
+                                <spring:message text="Поверхность экрана"/>
                             </form:label>
                             <div class="col-sm-4">
-                                <form:input path="name" pattern="(.[a-zA-Zа-яА-Я\s,ёЁ_-0-9]*)"
+                                <form:input path="surface" pattern="(.[a-zA-Zа-яА-Я\s,ёЁ_-0-9]*)"
                                             title="Используйте латинские или русские символы." class="form-control"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <form:label path="photo" class="col-sm-2 control-label">
-                                <spring:message text="Изображение"/>
+                            <form:label path="sensonal" class="col-sm-2 control-label">
+                                <spring:message text="Сенсорный экран"/>
                             </form:label>
-                            <div class="col-sm-2 control-label">
-                                <input type="file" id="fileElem" multiple accept="image/*" style="display:none"
-                                       onchange="handleFiles(this.files)">
-                                <a id="pictureName" name="g" href="javascript:doClick()"></a>
-                                <script>
-                                    var f = document.getElementById('pictureName');
-                                    f.innerHTML = "Выбрать изображение";
-                                </script>
-                                <div id="fileList">
-                                    <p></p>
-                                </div>
+                            <div class="double">
+                                <form:checkbox path="sensonal" checked="true" value="1"/>
                             </div>
-                            <form:hidden id="picture_url" path="photo"/>
                         </div>
+                        <div class="form-group">
+                            <form:label path="penInput" class="col-sm-2 control-label">
+                                <spring:message text="Поддержка ввода пером"/>
+                            </form:label>
+                            <div class="double">
+                                <form:checkbox path="penInput" checked="true" value="1"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label path="d3Screen" class="col-sm-2 control-label">
+                                <spring:message text="3D-экран"/>
+                            </form:label>
+                            <div class="double">
+                                <form:checkbox path="d3Screen" checked="true" value="1"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="impactResistance" class="col-sm-2 control-label">
+                                <spring:message text="Ударопрочность"/>
+                            </form:label>
+                            <div class="double">
+                                <form:checkbox path="impactResistance" checked="true" value="1"/>
+                            </div>
+                        </div>
+
+
 
 
                         <div class="form-group">
