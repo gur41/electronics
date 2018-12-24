@@ -83,7 +83,7 @@ public class NoteServiceImpl implements ServiceNote {
     }
 
     @Override
-    public Note getById(Integer id) {
+    public Note getByIdNote(Integer id) {
         return new Note(this.notebookDao.getById(id),
         this.batteryForNotebookDao.getById(id),
         this.cameraSoundForNotebookDao.getById(id),

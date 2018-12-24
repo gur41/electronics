@@ -1,5 +1,7 @@
 package last;
 
+import project.model.OrderUserElectronic;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -11,6 +13,7 @@ public class User {
     private String role;
     private Collection<OrderUser> orderUsersById;
     private Collection<Route> routesById;
+    private Collection<OrderUserElectronic> orderUserElectronicsById;
 
 
     public User() {
@@ -108,5 +111,15 @@ public class User {
 
     public void setRoutesById(Collection<Route> routesById) {
         this.routesById = routesById;
+    }
+
+    @OneToMany(mappedBy = "userByIdOrderUserElectronics")
+
+    public Collection<OrderUserElectronic> getOrderUserElectronicsById() {
+        return orderUserElectronicsById;
+    }
+
+    public void setOrderUserElectronicsById(Collection<OrderUserElectronic> orderUserElectronicsById) {
+        this.orderUserElectronicsById = orderUserElectronicsById;
     }
 }

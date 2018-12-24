@@ -15,6 +15,6 @@ public interface ServiceNote extends Service<Notebook>{
 
     public List<InfoNote> getAllnote();
 
-    public Note getById(Integer id);
+    public Note getByIdNote(Integer id);
 }
 

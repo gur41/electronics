@@ -155,7 +155,7 @@
 
                                 <tr>
                                     <td align="center">
-                                        <c:url var="addAction" value="/create_order/${notebook.id}"/>
+                                        <c:url var="addAction" value="/add_order_for_note/${notebook.id}"/>
 
                                         <form:form action="${addAction}" class="form-horizontal">
                                             <div class="form-group">

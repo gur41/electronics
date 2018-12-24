@@ -62,6 +62,7 @@
                 <value>project.model.note.RamForNotebook</value>
                 <value>project.model.note.ScreenForNotebook</value>
                 <value>project.model.note.WeightAndSizeForNotebook</value>
+                <value>project.model.OrderUserElectronic</value>
 
 
             </list>

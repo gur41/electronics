@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import project.model.OrderUserElectronic;
 import project.model.note.*;
 import project.service.Service;
 import project.service.ServiceNote;
@@ -39,7 +40,7 @@ public class NoteController {
     private WeightAndSizeForNotebook weightAndSizeForNotebook = null;
 
     private Integer id;
-
+    private Integer idForOrder;
 
     @Autowired(required = true)
     @Qualifier(value = "noteService")
@@ -317,7 +318,7 @@ public class NoteController {
 
     @RequestMapping(value = "/showOne", method = RequestMethod.GET)
     public String showNoteOne(Model model) {
-        Note note = this.noteService.getById(id);
+        Note note = this.noteService.getByIdNote(id);
         model.addAttribute("user", UserController.getCurrentUser());
         model.addAttribute("notebook", note.getNotebook());
         model.addAttribute("common", note.getCommonInformationForNotebook());
@@ -335,6 +336,37 @@ public class NoteController {
         model.addAttribute("battery", note.getBatteryForNotebook());
         model.addAttribute("complectation", note.getComplectationForNotebook());
         return "note/show_one_note";
+    }
+
+    @RequestMapping(value = "/add_order_for_note/{id}")
+    public String showOrderElectronic(@PathVariable("id") Integer id,Model model) {
+        this.idForOrder = id;
+        return "redirect:http://localhost:8080/add_order_for_note";
+    }
+
+    @RequestMapping(value = "/add_order_for_note", method = RequestMethod.GET)
+    public String showOrderElectronics(Model model) {
+        model.addAttribute("user", UserController.getCurrentUser());
+        model.addAttribute("order", new OrderUserElectronic());
+        return "note/add_order_for_note";
+    }
+
+    @RequestMapping(value = "/add_order_for_note/add/", method = RequestMethod.POST)
+    public String getNewOrder(@ModelAttribute("user") User user, @ModelAttribute("order") OrderUserElectronic orderUserElectronic) {
+        //this.interfaceForNotebook = interfaceForNotebook;
+        System.out.println("666666666666666666666666666");
+        System.out.println(orderUserElectronic.geteMail());
+        System.out.println(user.getId());
+        Notebook notebook = this.noteService.getById(idForOrder);
+        orderUserElectronic.setName(notebook.getMark()+" "+notebook.getName());
+        orderUserElectronic.setStatus("Оформлена");
+        orderUserElectronic.setIdOrder(user.getId());
+        System.out.println(orderUserElectronic.geteMail());
+        //написать dao, service для добавленія заказа orderUserElectronics
+        //для пользователя просмотр заявок
+        //ізмененіе цены допісать
+        //для админа измение статуса
+        return "redirect:http://localhost:8080/client";
     }
 
 
