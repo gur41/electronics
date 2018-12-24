@@ -199,7 +199,7 @@
                         </div>
 
                         <div class="form-group">
-                            <form:label path="frequency" class="col-sm-2 control-label">
+                            <form:label path="turboFrequency" class="col-sm-2 control-label">
                                 <spring:message text="Turbo-частота"/>
                             </form:label>
                             <div class="col-sm-4">

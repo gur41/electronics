@@ -154,7 +154,7 @@
                                 <spring:message text="Тип оперативной памяти"/>
                             </form:label>
                             <div class="col-sm-4">
-                                <form:input path="type" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)"
+                                <form:input path="type" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-0-9]*)"
                                             title="Используйте латинские или русские символы." class="form-control"/>
                             </div>
                         </div>

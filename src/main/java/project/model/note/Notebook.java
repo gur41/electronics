@@ -8,6 +8,7 @@ public class Notebook {
     private String mark;
     private String name;
     private String photo;
+    private Double price;
     private Integer idCommonInformationForNotebook;
     private Integer idProcessorForNotebook;
     private Integer idConstructionForNotebook;
@@ -59,6 +60,16 @@ public class Notebook {
 
     public void setMark(String mark) {
         this.mark = mark;
+    }
+
+    @Basic
+    @Column(name = "price", nullable = true)
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     @Basic

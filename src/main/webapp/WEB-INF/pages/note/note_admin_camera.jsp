@@ -153,16 +153,20 @@
                             <form:label path="camera" class="col-sm-2 control-label">
                                 <spring:message text="Встроенная камера"/>
                             </form:label>
-                            <div class="double">
-                                <form:checkbox path="camera" checked="true" value="1"/>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="camera" checked="true" value="1"/>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <form:label path="microphone" class="col-sm-2 control-label">
                                 <spring:message text="Встроенный микрофон"/>
                             </form:label>
-                            <div class="double">
-                                <form:checkbox path="microphone" checked="true" value="1"/>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="microphone" checked="true" value="1"/>
+                                </div>
                             </div>
                         </div>
 
@@ -171,13 +175,13 @@
                                 <spring:message text="Встроенные динамики"/>
                             </form:label>
                             <div class="col-sm-4">
-                                <form:input path="dinamics" pattern="(.[0-9]*)"
+                                <form:input path="dinamics" pattern="(.[a-zA-Zа-яА-Я\s,ёЁ_-]*)"
                                             title="Используйте латинские или русские символы." class="form-control"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <form:label path="name" class="col-sm-2 control-label">
+                            <form:label path="pixel" class="col-sm-2 control-label">
                                 <spring:message text="Количество пикселей"/>
                             </form:label>
                             <div class="col-sm-4">
@@ -193,21 +197,21 @@
                                        value="<spring:message text="Продолжить"/>"/>
                             </div>
                         </div>
-                    </form:form>
-                        </div>
-                    </section>
-
+                        </form:form>
                 </div>
+                </section>
+
             </div>
         </div>
     </div>
+</div>
 
-    <footer>
-        <div class="container">
-            <div style="padding: 10px 0pt 0pt 30px; clear: both; color: #8d1645; font-size: 15px;">Все права защищены
-                &copy; <?=date ('Y')?></div>
-        </div>
-    </footer>
+<footer>
+    <div class="container">
+        <div style="padding: 10px 0pt 0pt 30px; clear: both; color: #8d1645; font-size: 15px;">Все права защищены
+            &copy; <?=date ('Y')?></div>
+    </div>
+</footer>
 </div>
 <<!-- Раскомментировать для jsp -->
 <script src="${pageContext.request.contextPath}/resources/js/jquery.backstretch.min.js"></script>

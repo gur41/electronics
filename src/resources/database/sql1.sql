@@ -5,13 +5,8 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema electronic
+-- Schema mydb
 -- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema electronic
--- -----------------------------------------------------
-
 -- -----------------------------------------------------
 -- Schema log
 -- -----------------------------------------------------
@@ -20,14 +15,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema log
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `log` DEFAULT CHARACTER SET utf8 ;
--- ------------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
-
 USE `log` ;
 
 -- -----------------------------------------------------
@@ -39,8 +26,9 @@ CREATE TABLE IF NOT EXISTS `log`.`battery_for_notebook` (
   `cell` INT(11) NULL DEFAULT NULL,
   `energy` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -53,8 +41,9 @@ CREATE TABLE IF NOT EXISTS `log`.`camera_sound_for_notebook` (
   `dinamics` VARCHAR(255) NULL DEFAULT NULL,
   `pixel` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -66,8 +55,9 @@ CREATE TABLE IF NOT EXISTS `log`.`common_information_for_notebook` (
   `type` VARCHAR(255) NULL DEFAULT NULL,
   `transformer` TINYINT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -80,8 +70,9 @@ CREATE TABLE IF NOT EXISTS `log`.`complectation_for_notebook` (
   `bag_case` TINYINT(1) NULL DEFAULT NULL,
   `complect` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -96,8 +87,9 @@ CREATE TABLE IF NOT EXISTS `log`.`construction_for_notebook` (
   `backlight` TINYINT(1) NULL DEFAULT NULL,
   `impact_resistance` TINYINT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -111,8 +103,9 @@ CREATE TABLE IF NOT EXISTS `log`.`data_for_notebook` (
   `optical` TINYINT(1) NULL DEFAULT NULL,
   `memory_card` TINYINT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -122,8 +115,9 @@ CREATE TABLE IF NOT EXISTS `log`.`founctions_for_notebook` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `scaner` TINYINT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -135,8 +129,9 @@ CREATE TABLE IF NOT EXISTS `log`.`graphics_for_notebook` (
   `type` VARCHAR(255) NULL DEFAULT NULL,
   `volume` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -160,8 +155,9 @@ CREATE TABLE IF NOT EXISTS `log`.`interface_for_notebook` (
   `thounderbolt` TINYINT(1) NULL DEFAULT NULL,
   `jack` TINYINT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -175,8 +171,9 @@ CREATE TABLE IF NOT EXISTS `log`.`keyboard_and_touchpad_for_notebook` (
   `touchpad` VARCHAR(255) NULL DEFAULT NULL,
   `multimedia_pannel` TINYINT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -186,9 +183,9 @@ CREATE TABLE IF NOT EXISTS `log`.`points` (
   `id_point` INT(11) NOT NULL AUTO_INCREMENT,
   `name_of_point` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id_point`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 6
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 6
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -199,12 +196,11 @@ CREATE TABLE IF NOT EXISTS `log`.`user` (
   `login` VARCHAR(255) NULL DEFAULT NULL,
   `password` VARCHAR(255) NULL DEFAULT NULL,
   `role` VARCHAR(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 13
-DEFAULT CHARACTER SET = utf8;
-
-CREATE UNIQUE INDEX `login` ON `log`.`user` (`login` ASC);
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `login` (`login` ASC))
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 13
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -217,24 +213,21 @@ CREATE TABLE IF NOT EXISTS `log`.`route` (
   `end_point_of_route` INT(11) NULL DEFAULT NULL,
   `id_user_created_route` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id_route`),
+  INDEX `starts_point_id` (`start_point_of_route` ASC),
+  INDEX `id_user_created_route` (`id_user_created_route` ASC),
+  INDEX `ends_point_id` (`end_point_of_route` ASC),
   CONSTRAINT `ends_point_id`
-    FOREIGN KEY (`end_point_of_route`)
-    REFERENCES `log`.`points` (`id_point`),
+  FOREIGN KEY (`end_point_of_route`)
+  REFERENCES `log`.`points` (`id_point`),
   CONSTRAINT `id_user_created_route`
-    FOREIGN KEY (`id_user_created_route`)
-    REFERENCES `log`.`user` (`id`),
+  FOREIGN KEY (`id_user_created_route`)
+  REFERENCES `log`.`user` (`id`),
   CONSTRAINT `starts_point_id`
-    FOREIGN KEY (`start_point_of_route`)
-    REFERENCES `log`.`points` (`id_point`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 3
-DEFAULT CHARACTER SET = utf8;
-
-CREATE INDEX `starts_point_id` ON `log`.`route` (`start_point_of_route` ASC);
-
-CREATE INDEX `id_user_created_route` ON `log`.`route` (`id_user_created_route` ASC);
-
-CREATE INDEX `ends_point_id` ON `log`.`route` (`end_point_of_route` ASC);
+  FOREIGN KEY (`start_point_of_route`)
+  REFERENCES `log`.`points` (`id_point`))
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -247,9 +240,9 @@ CREATE TABLE IF NOT EXISTS `log`.`transport` (
   `coefficient` DOUBLE NULL DEFAULT NULL,
   `max_weight` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id_transport`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 6
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 6
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -264,29 +257,25 @@ CREATE TABLE IF NOT EXISTS `log`.`maps` (
   `id_transport_in_maps` INT(11) NULL DEFAULT NULL,
   `cost_for_hour` DOUBLE NULL DEFAULT NULL,
   PRIMARY KEY (`id_maps`),
+  UNIQUE INDEX `unique_path` (`start_point_id` ASC, `end_point_id` ASC, `route` ASC),
+  INDEX `route_id` (`route` ASC),
+  INDEX `end_point_id` (`end_point_id` ASC),
+  INDEX `transport_maps` (`id_transport_in_maps` ASC),
   CONSTRAINT `end_point_id`
-    FOREIGN KEY (`end_point_id`)
-    REFERENCES `log`.`points` (`id_point`),
+  FOREIGN KEY (`end_point_id`)
+  REFERENCES `log`.`points` (`id_point`),
   CONSTRAINT `route_id`
-    FOREIGN KEY (`route`)
-    REFERENCES `log`.`route` (`id_route`),
+  FOREIGN KEY (`route`)
+  REFERENCES `log`.`route` (`id_route`),
   CONSTRAINT `start_point_id`
-    FOREIGN KEY (`start_point_id`)
-    REFERENCES `log`.`points` (`id_point`),
+  FOREIGN KEY (`start_point_id`)
+  REFERENCES `log`.`points` (`id_point`),
   CONSTRAINT `transport_maps`
-    FOREIGN KEY (`id_transport_in_maps`)
-    REFERENCES `log`.`transport` (`id_transport`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 6
-DEFAULT CHARACTER SET = utf8;
-
-CREATE UNIQUE INDEX `unique_path` ON `log`.`maps` (`start_point_id` ASC, `end_point_id` ASC, `route` ASC);
-
-CREATE INDEX `route_id` ON `log`.`maps` (`route` ASC);
-
-CREATE INDEX `end_point_id` ON `log`.`maps` (`end_point_id` ASC);
-
-CREATE INDEX `transport_maps` ON `log`.`maps` (`id_transport_in_maps` ASC);
+  FOREIGN KEY (`id_transport_in_maps`)
+  REFERENCES `log`.`transport` (`id_transport`))
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 6
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -302,8 +291,9 @@ CREATE TABLE IF NOT EXISTS `log`.`processor_for_notebook` (
   `turbo_frequency` INT(11) NULL DEFAULT NULL,
   `power_usage` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -314,8 +304,9 @@ CREATE TABLE IF NOT EXISTS `log`.`ram_for_notebook` (
   `type` VARCHAR(255) NULL DEFAULT NULL,
   `volume` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -332,8 +323,9 @@ CREATE TABLE IF NOT EXISTS `log`.`screen_for_notebook` (
   `pen_input` TINYINT(1) NULL DEFAULT NULL,
   `impact_resistance` TINYINT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -346,8 +338,9 @@ CREATE TABLE IF NOT EXISTS `log`.`weight_and_size_for_notebook` (
   `thickness` DOUBLE NULL DEFAULT NULL,
   `weight` DOUBLE NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -373,78 +366,65 @@ CREATE TABLE IF NOT EXISTS `log`.`notebook` (
   `id_battery_for_notebook` INT(11) NULL DEFAULT NULL,
   `id_complectation_for_notebook` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
+  INDEX `id_complectation_for_notebook` (`id_complectation_for_notebook` ASC),
+  INDEX `id_battery_for_notebook` (`id_battery_for_notebook` ASC),
+  INDEX `id_interface_for_notebook` (`id_interface_for_notebook` ASC),
+  INDEX `id_founctions_for_notebook` (`id_founctions_for_notebook` ASC),
+  INDEX `id_keyboard_and_touchpad_for_notebook` (`id_keyboard_and_touchpad_for_notebook` ASC),
+  INDEX `id_camera_sound_for_notebook` (`id_camera_sound_for_notebook` ASC),
+  INDEX `id_graphics_for_notebook` (`id_graphics_for_notebook` ASC),
+  INDEX `id_data_for_notebook` (`id_data_for_notebook` ASC),
+  INDEX `id_ram_for_notebook` (`id_ram_for_notebook` ASC),
+  INDEX `id_weight_and_size_for_notebook` (`id_weight_and_size_for_notebook` ASC),
+  INDEX `id_screen_for_notebook` (`id_screen_for_notebook` ASC),
+  INDEX `id_common_information_for_notebook` (`id_common_information_for_notebook` ASC),
+  INDEX `id_proceessor_for_notebook` (`id_processor_for_notebook` ASC),
+  INDEX `id_construction_for_notebook` (`id_construction_for_notebook` ASC),
   CONSTRAINT `id_battery_for_notebook`
-    FOREIGN KEY (`id_battery_for_notebook`)
-    REFERENCES `log`.`battery_for_notebook` (`id`),
+  FOREIGN KEY (`id_battery_for_notebook`)
+  REFERENCES `log`.`battery_for_notebook` (`id`),
   CONSTRAINT `id_camera_sound_for_notebook`
-    FOREIGN KEY (`id_camera_sound_for_notebook`)
-    REFERENCES `log`.`camera_sound_for_notebook` (`id`),
+  FOREIGN KEY (`id_camera_sound_for_notebook`)
+  REFERENCES `log`.`camera_sound_for_notebook` (`id`),
   CONSTRAINT `id_common_information_for_notebook`
-    FOREIGN KEY (`id_common_information_for_notebook`)
-    REFERENCES `log`.`common_information_for_notebook` (`id`),
+  FOREIGN KEY (`id_common_information_for_notebook`)
+  REFERENCES `log`.`common_information_for_notebook` (`id`),
   CONSTRAINT `id_complectation_for_notebook`
-    FOREIGN KEY (`id_complectation_for_notebook`)
-    REFERENCES `log`.`complectation_for_notebook` (`id`),
+  FOREIGN KEY (`id_complectation_for_notebook`)
+  REFERENCES `log`.`complectation_for_notebook` (`id`),
   CONSTRAINT `id_construction_for_notebook`
-    FOREIGN KEY (`id_construction_for_notebook`)
-    REFERENCES `log`.`construction_for_notebook` (`id`),
+  FOREIGN KEY (`id_construction_for_notebook`)
+  REFERENCES `log`.`construction_for_notebook` (`id`),
   CONSTRAINT `id_data_for_notebook`
-    FOREIGN KEY (`id_data_for_notebook`)
-    REFERENCES `log`.`data_for_notebook` (`id`),
+  FOREIGN KEY (`id_data_for_notebook`)
+  REFERENCES `log`.`data_for_notebook` (`id`),
   CONSTRAINT `id_founctions_for_notebook`
-    FOREIGN KEY (`id_founctions_for_notebook`)
-    REFERENCES `log`.`founctions_for_notebook` (`id`),
+  FOREIGN KEY (`id_founctions_for_notebook`)
+  REFERENCES `log`.`founctions_for_notebook` (`id`),
   CONSTRAINT `id_graphics_for_notebook`
-    FOREIGN KEY (`id_graphics_for_notebook`)
-    REFERENCES `log`.`graphics_for_notebook` (`id`),
+  FOREIGN KEY (`id_graphics_for_notebook`)
+  REFERENCES `log`.`graphics_for_notebook` (`id`),
   CONSTRAINT `id_interface_for_notebook`
-    FOREIGN KEY (`id_interface_for_notebook`)
-    REFERENCES `log`.`interface_for_notebook` (`id`),
+  FOREIGN KEY (`id_interface_for_notebook`)
+  REFERENCES `log`.`interface_for_notebook` (`id`),
   CONSTRAINT `id_keyboard_and_touchpad_for_notebook`
-    FOREIGN KEY (`id_keyboard_and_touchpad_for_notebook`)
-    REFERENCES `log`.`keyboard_and_touchpad_for_notebook` (`id`),
+  FOREIGN KEY (`id_keyboard_and_touchpad_for_notebook`)
+  REFERENCES `log`.`keyboard_and_touchpad_for_notebook` (`id`),
   CONSTRAINT `id_proceessor_for_notebook`
-    FOREIGN KEY (`id_processor_for_notebook`)
-    REFERENCES `log`.`processor_for_notebook` (`id`),
+  FOREIGN KEY (`id_processor_for_notebook`)
+  REFERENCES `log`.`processor_for_notebook` (`id`),
   CONSTRAINT `id_ram_for_notebook`
-    FOREIGN KEY (`id_ram_for_notebook`)
-    REFERENCES `log`.`ram_for_notebook` (`id`),
+  FOREIGN KEY (`id_ram_for_notebook`)
+  REFERENCES `log`.`ram_for_notebook` (`id`),
   CONSTRAINT `id_screen_for_notebook`
-    FOREIGN KEY (`id_screen_for_notebook`)
-    REFERENCES `log`.`screen_for_notebook` (`id`),
+  FOREIGN KEY (`id_screen_for_notebook`)
+  REFERENCES `log`.`screen_for_notebook` (`id`),
   CONSTRAINT `id_weight_and_size_for_notebook`
-    FOREIGN KEY (`id_weight_and_size_for_notebook`)
-    REFERENCES `log`.`weight_and_size_for_notebook` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-CREATE INDEX `id_complectation_for_notebook` ON `log`.`notebook` (`id_complectation_for_notebook` ASC);
-
-CREATE INDEX `id_battery_for_notebook` ON `log`.`notebook` (`id_battery_for_notebook` ASC);
-
-CREATE INDEX `id_interface_for_notebook` ON `log`.`notebook` (`id_interface_for_notebook` ASC);
-
-CREATE INDEX `id_founctions_for_notebook` ON `log`.`notebook` (`id_founctions_for_notebook` ASC);
-
-CREATE INDEX `id_keyboard_and_touchpad_for_notebook` ON `log`.`notebook` (`id_keyboard_and_touchpad_for_notebook` ASC);
-
-CREATE INDEX `id_camera_sound_for_notebook` ON `log`.`notebook` (`id_camera_sound_for_notebook` ASC);
-
-CREATE INDEX `id_graphics_for_notebook` ON `log`.`notebook` (`id_graphics_for_notebook` ASC);
-
-CREATE INDEX `id_data_for_notebook` ON `log`.`notebook` (`id_data_for_notebook` ASC);
-
-CREATE INDEX `id_ram_for_notebook` ON `log`.`notebook` (`id_ram_for_notebook` ASC);
-
-CREATE INDEX `id_weight_and_size_for_notebook` ON `log`.`notebook` (`id_weight_and_size_for_notebook` ASC);
-
-CREATE INDEX `id_screen_for_notebook` ON `log`.`notebook` (`id_screen_for_notebook` ASC);
-
-CREATE INDEX `id_common_information_for_notebook` ON `log`.`notebook` (`id_common_information_for_notebook` ASC);
-
-CREATE INDEX `id_proceessor_for_notebook` ON `log`.`notebook` (`id_processor_for_notebook` ASC);
-
-CREATE INDEX `id_construction_for_notebook` ON `log`.`notebook` (`id_construction_for_notebook` ASC);
+  FOREIGN KEY (`id_weight_and_size_for_notebook`)
+  REFERENCES `log`.`weight_and_size_for_notebook` (`id`))
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -462,20 +442,17 @@ CREATE TABLE IF NOT EXISTS `log`.`order_user` (
   `e_mail` VARCHAR(255) NULL DEFAULT NULL,
   `status` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id_order`),
+  INDEX `id_route_order` (`id_route_order` ASC),
+  INDEX `id_user_order` (`id_user_order` ASC),
   CONSTRAINT `id_route_order`
-    FOREIGN KEY (`id_route_order`)
-    REFERENCES `log`.`route` (`id_route`),
+  FOREIGN KEY (`id_route_order`)
+  REFERENCES `log`.`route` (`id_route`),
   CONSTRAINT `id_user_order`
-    FOREIGN KEY (`id_user_order`)
-    REFERENCES `log`.`user` (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 5
-DEFAULT CHARACTER SET = utf8;
-
-CREATE INDEX `id_route_order` ON `log`.`order_user` (`id_route_order` ASC);
-
-CREATE INDEX `id_user_order` ON `log`.`order_user` (`id_user_order` ASC);
-
+  FOREIGN KEY (`id_user_order`)
+  REFERENCES `log`.`user` (`id`))
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 5
+  DEFAULT CHARACTER SET = utf8;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

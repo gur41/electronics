@@ -154,7 +154,7 @@
                                 <spring:message text="Конфигурация накопителя"/>
                             </form:label>
                             <div class="col-sm-4">
-                                <form:input path="configuration" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)"
+                                <form:input path="configuration" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-0-9]*)"
                                             title="Используйте латинские или русские символы." class="form-control"/>
                             </div>
                         </div>
@@ -173,16 +173,18 @@
                                 <spring:message text="Ёмкость накопителя"/>
                             </form:label>
                             <div class="col-sm-4">
-                                <form:input path="volume" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)"
-                                            title="Используйте латинские или русские символы." class="form-control"/>
+                                <form:input path="volume" pattern="(.[0-9]*)"
+                                            title="Используйте цифры." class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <form:label path="optical" class="col-sm-2 control-label">
                                 <spring:message text="Оптический привод (ODD)"/>
                             </form:label>
-                            <div class="double">
-                                <form:checkbox path="optical" checked="true" value="1"/>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="optical" checked="true" value="1"/>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">

@@ -194,18 +194,21 @@
                             <form:label path="backlight" class="col-sm-2 control-label">
                                 <spring:message text="Подсветка корпуса"/>
                             </form:label>
-                            <div class="col-sm-4">
+                            <div class="col-sm-2 control-label">
                                 <div class="double">
                                     <form:checkbox path="backlight" checked="true" value="1"/>
                                 </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <form:label path="impactResistance" class="col-sm-2 control-label">
                                 <spring:message text="Пыле-, влаго-, ударопрочность"/>
                             </form:label>
-                            <div class="double">
-                                <form:checkbox path="impactResistance" checked="true" value="1"/>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="impactResistance" checked="true" value="1"/>
+                                </div>
                             </div>
                         </div>
 

@@ -136,39 +136,85 @@
                 <div class="col-md-12">
                     <h1 class="h2 page-header"
                         style="color:#8d1645; font-family: 'Lobster', cursive; margin-top: -1px;
-                        text-align: center;">Пункт прибытия/назначения</h1>
+                        text-align: center;">Ноутбуки</h1>
                     <section class="main">
 
 
-                        <div class="headname">
-                            <h1>Форма для оформления доставки товара</h1>
-                        </div>
-
-                        <c:url var="addAction" value="/note_admin_function/add"/>
-
-                        <form:form action="${addAction}" modelAttribute="function" class="form-horizontal">
+                        <%--<div class="headname">
+                            <h1>Ноутбуки</h1>
+                        </div>--%>
 
 
-                        <div class="form-group">
-                            <form:label path="scaner" class="col-sm-2 control-label">
-                                <spring:message text="Сканер отпечатков пальцев"/>
-                            </form:label>
-                            <div class="col-sm-2 control-label">
-                                <div class="double">
-                                    <form:checkbox path="scaner" checked="true" value="1"/>
-                                </div>
+                        <c:if test="${!empty listNote}">
+                            <table class="tg">
+                                <%--<tr>
+                                    <th width="240">Картинка</th>
+                                    <th width="120">Название</th>
+                                    <th width="120">Описание</th>
+                                    <th width="120">Цена</th>
+                                    <th width="60">Удалить</th>
+                                    <th width="240">Удалить</th>
+                                </tr>--%>
+                                <c:set var="j" value="0"/>
+                                <c:forEach items="${listNote}" var="note">
+                                    <tr>
+                                        <c:set var="nm" value="getPicture${j=j+1}"/>
+                                        <td><a href="<c:url value='/noteOne/${note.id}'/>">${note.name}</a></td>
+                                        <td><c:set var="nm" value="getPicture${j=j+1}"/>
+                                            <div class="col-md-2" id="${nm}">
+                                                <script>
+                                                    var adress = "/resources/images/";
+                                                    var img = document.createElement('img');
+                                                    img.setAttribute('src', adress + "${note.photo}");
+                                                    img.height = 150;
+                                                    document.getElementById("${nm}").appendChild(img);
+                                                </script>
+                                            </div>
+                                        </td>
+                                        <td>${note.info}</td>
+                                        <td>${note.price}</td>
+                                        <td>
+                                            <%--<a href="<c:url value='/deleteNote/${note.id}'/>">Удалить</a>--%>
+                                            <c:url var="addAction" value="/deleteNote/${note.id}"/>
+
+                                            <form:form action="${addAction}" class="form-horizontal">
+                                                <div class="col-sm-offset-1 col-sm-10">
+                                                    <input type="submit" class="btn btn-success"
+                                                           value="<spring:message text="Удалить"/>"/>
+                                                </div>
+                                            </form:form>
+                                        </td>
+                                        <td width="120">
+                                            <c:url var="addAction" value="/note_change_price/${note.id}"/>
+
+                                            <form:form action="${addAction}" class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <input type="text" placeholder="Цена" name="price" pattern="(.[0-9]*)"
+                                                                title="Используйте цифры." class="form-control"/>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <p>
+                                                    </p>
+                                                </div>
+                                                <div class="col-sm-offset-1 col-sm-10">
+                                                    <input type="submit" class="btn btn-success"
+                                                           value="<spring:message text="Изменить"/>"/>
+                                                </div>
+                                            </div>
+                                            </form:form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </c:if>
+
+                        <c:if test="${empty listNote}">
+                            <div class="headname">
+                                <h1>Список ноутбуков пуст</h1>
                             </div>
-                        </div>
+                        </c:if>
 
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <input type="submit" class="btn btn-success"
-                                       value="<spring:message text="Продолжить"/>"/>
-                            </div>
-                        </div>
-                    </form:form>
-                        </div>
                     </section>
 
                 </div>

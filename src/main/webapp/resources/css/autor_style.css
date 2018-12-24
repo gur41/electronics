@@ -21,6 +21,14 @@
     display: table;
     clear: both;
 }
+.tab {
+    border-collapse: collapse;
+    border: 0;
+}
+.normPicture{
+    height: 300px;
+    width: 500px;
+}
 
 .double {
     zoom: 1.5;
@@ -31,6 +39,17 @@
     -moz-transform: scale(1.5);
     position: relative;
     left: -100px;
+}
+.pro50{
+    width: 50%;
+}
+.i-tip{
+    background:url("../../resources/images/checkmark.png");
+}
+.small{
+    width: 25px;
+    height: 25px;
+    position: relative;
 }
 
 /*ФОН ФОРМЫ АВТОРИЗАЦИИ*/

@@ -163,7 +163,7 @@
                                 <spring:message text="Разрешение экрана"/>
                             </form:label>
                             <div class="col-sm-4">
-                                <form:input path="resolution" pattern="(.[0-9]*)"
+                                <form:input path="resolution" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-0-9]*)"
                                             title="Используйте цифры." class="form-control"/>
                             </div>
                         </div>
@@ -173,7 +173,7 @@
                                 <spring:message text="Технология экрана"/>
                             </form:label>
                             <div class="col-sm-4">
-                                <form:input path="technologi" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)"
+                                <form:input path="technologi" pattern="(.[a-zA-Zа-яА+-Я\sё,Ё_-]*)"
                                             title="Используйте латинские или русские символы." class="form-control"/>
                             </div>
                         </div>
@@ -191,24 +191,30 @@
                             <form:label path="sensonal" class="col-sm-2 control-label">
                                 <spring:message text="Сенсорный экран"/>
                             </form:label>
-                            <div class="double">
-                                <form:checkbox path="sensonal" checked="true" value="1"/>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="sensonal" checked="true" value="1"/>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <form:label path="penInput" class="col-sm-2 control-label">
                                 <spring:message text="Поддержка ввода пером"/>
                             </form:label>
-                            <div class="double">
-                                <form:checkbox path="penInput" checked="true" value="1"/>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="penInput" checked="true" value="1"/>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <form:label path="d3Screen" class="col-sm-2 control-label">
                                 <spring:message text="3D-экран"/>
                             </form:label>
-                            <div class="double">
-                                <form:checkbox path="d3Screen" checked="true" value="1"/>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="d3Screen" checked="true" value="1"/>
+                                </div>
                             </div>
                         </div>
 
@@ -216,8 +222,10 @@
                             <form:label path="impactResistance" class="col-sm-2 control-label">
                                 <spring:message text="Ударопрочность"/>
                             </form:label>
-                            <div class="double">
-                                <form:checkbox path="impactResistance" checked="true" value="1"/>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="impactResistance" checked="true" value="1"/>
+                                </div>
                             </div>
                         </div>
 

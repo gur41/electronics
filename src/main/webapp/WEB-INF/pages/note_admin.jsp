@@ -169,6 +169,16 @@
                         </div>
 
                         <div class="form-group">
+                            <form:label path="price" class="col-sm-2 control-label">
+                                <spring:message text="Цена"/>
+                            </form:label>
+                            <div class="col-sm-2">
+                                <form:input path="price" pattern="(.[0-9]*)"
+                                            title="Используйте латинские или русские символы." class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <form:label path="photo" class="col-sm-2 control-label">
                                 <spring:message text="Изображение"/>
                             </form:label>

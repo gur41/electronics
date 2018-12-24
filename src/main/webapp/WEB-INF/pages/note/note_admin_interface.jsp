@@ -144,48 +144,152 @@
                             <h1>Форма для оформления доставки товара</h1>
                         </div>
 
-                        <c:url var="addAction" value="/note_admin/add"/>
+                        <c:url var="addAction" value="/note_admin_interface/add"/>
 
-                        <form:form action="${addAction}" modelAttribute="notebook" class="form-horizontal">
+                        <form:form action="${addAction}" modelAttribute="interface" class="form-horizontal">
 
-
-                        <div class="form-group">
-                            <form:label path="mark" class="col-sm-2 control-label">
-                                <spring:message text="Производитель"/>
-                            </form:label>
-                            <div class="col-sm-4">
-                                <form:input path="mark" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)"
-                                            title="Используйте латинские или русские символы." class="form-control"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <form:label path="name" class="col-sm-2 control-label">
-                                <spring:message text="Модель"/>
-                            </form:label>
-                            <div class="col-sm-4">
-                                <form:input path="name" pattern="(.[a-zA-Zа-яА-Я\s,ёЁ_-0-9]*)"
-                                            title="Используйте латинские или русские символы." class="form-control"/>
-                            </div>
-                        </div>
 
                         <div class="form-group">
-                            <form:label path="photo" class="col-sm-2 control-label">
-                                <spring:message text="Изображение"/>
+                            <form:label path="nfc" class="col-sm-2 control-label">
+                                <spring:message text="NFC"/>
                             </form:label>
                             <div class="col-sm-2 control-label">
-                                <input type="file" id="fileElem" multiple accept="image/*" style="display:none"
-                                       onchange="handleFiles(this.files)">
-                                <a id="pictureName" name="g" href="javascript:doClick()"></a>
-                                <script>
-                                    var f = document.getElementById('pictureName');
-                                    f.innerHTML = "Выбрать изображение";
-                                </script>
-                                <div id="fileList">
-                                    <p></p>
+                                <div class="double">
+                                    <form:checkbox path="nfc" checked="true" value="1"/>
                                 </div>
                             </div>
-                            <form:hidden id="picture_url" path="photo"/>
                         </div>
+                        <div class="form-group">
+                            <form:label path="lan" class="col-sm-2 control-label">
+                                <spring:message text="LAN "/>
+                            </form:label>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="lan" checked="true" value="1"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="wifi" class="col-sm-2 control-label">
+                                <spring:message text="Wi-Fi"/>
+                            </form:label>
+                            <div class="col-sm-4">
+                                <form:input path="wifi" pattern="(.[0-9]*)"
+                                            title="Используйте цифры." class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label path="mobile" class="col-sm-2 control-label">
+                                <spring:message text="Сотовая связь"/>
+                            </form:label>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="mobile" checked="true" value="1"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="usbPort" class="col-sm-2 control-label">
+                                <spring:message text="Всего USB-портов"/>
+                            </form:label>
+                            <div class="col-sm-4">
+                                <form:input path="usbPort" pattern="(.[0-9]*)"
+                                            title="Используйте цифры." class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label path="usb2" class="col-sm-2 control-label">
+                                <spring:message text="USB 2.0"/>
+                            </form:label>
+                            <div class="col-sm-4">
+                                <form:input path="usb2" pattern="(.[0-9]*)"
+                                            title="Используйте цифры." class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="usb3" class="col-sm-2 control-label">
+                                <spring:message text="USB 3.0"/>
+                            </form:label>
+                            <div class="col-sm-4">
+                                <form:input path="usb3" pattern="(.[0-9]*)"
+                                            title="Используйте цифры" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label path="usb31A" class="col-sm-2 control-label">
+                                <spring:message text="USB 3.1 Type-A"/>
+                            </form:label>
+                            <div class="col-sm-4">
+                                <form:input path="usb31A" pattern="(.[0-9]*)"
+                                            title="Используйте цифры." class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="usb31C" class="col-sm-2 control-label">
+                                <spring:message text="USB 3.1 Type-C"/>
+                            </form:label>
+                            <div class="col-sm-4">
+                                <form:input path="usb31C" pattern="(.[0-9]*)"
+                                            title="Используйте цифры." class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label path="vga" class="col-sm-2 control-label">
+                                <spring:message text="VGA (RGB)"/>
+                            </form:label>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="vga" checked="true" value="1"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label path="hdmi" class="col-sm-2 control-label">
+                                <spring:message text="HDMI"/>
+                            </form:label>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="hdmi" checked="true" value="1"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <form:label path="displayPort" class="col-sm-2 control-label">
+                                <spring:message text="DisplayPort"/>
+                            </form:label>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="displayPort" checked="true" value="1"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label path="thounderbolt" class="col-sm-2 control-label">
+                                <spring:message text="Thunderbolt"/>
+                            </form:label>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="thounderbolt" checked="true" value="1"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label path="jack" class="col-sm-2 control-label">
+                                <spring:message text="Аудио выходы (3.5 мм jack)"/>
+                            </form:label>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="jack" checked="true" value="1"/>
+                                </div>
+                            </div>
+                        </div>
+
+
 
 
                         <div class="form-group">

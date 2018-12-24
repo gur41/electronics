@@ -153,16 +153,20 @@
                         <form:label path="numpad" class="col-sm-2 control-label">
                             <spring:message text="Цифровое поле (Numpad)"/>
                         </form:label>
-                            <div class="double">
-                                <form:checkbox path="numpad" checked="true" value="1"/>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="numpad" checked="true" value="1"/>
+                                </div>
                             </div>
-                    </div>
+                        </div>
                         <div class="form-group">
                             <form:label path="backlight" class="col-sm-2 control-label">
                                 <spring:message text="Подсветка клавиатуры "/>
                             </form:label>
-                            <div class="double">
-                                <form:checkbox path="backlight" checked="true" value="1"/>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="backlight" checked="true" value="1"/>
+                                </div>
                             </div>
                         </div>
 
@@ -171,7 +175,7 @@
                                 <spring:message text="Управление курсором"/>
                             </form:label>
                             <div class="col-sm-4">
-                                <form:input path="touchpad" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)"
+                                <form:input path="touchpad" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-()]*)"
                                             title="Используйте латинские или русские символы." class="form-control"/>
                             </div>
                         </div>
@@ -179,8 +183,10 @@
                             <form:label path="multimediaPannel" class="col-sm-2 control-label">
                                 <spring:message text="Мультимедийная сенсорная панель"/>
                             </form:label>
-                            <div class="double">
-                                <form:checkbox path="multimediaPannel" checked="true" value="1"/>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="multimediaPannel" checked="true" value="1"/>
+                                </div>
                             </div>
                         </div>
 
@@ -188,8 +194,10 @@
                             <form:label path="kirilitca" class="col-sm-2 control-label">
                                 <spring:message text="Кириллица"/>
                             </form:label>
-                            <div class="double">
-                                <form:checkbox path="kirilitca" checked="true" value="1"/>
+                            <div class="col-sm-2 control-label">
+                                <div class="double">
+                                    <form:checkbox path="kirilitca" checked="true" value="1"/>
+                                </div>
                             </div>
                         </div>
 

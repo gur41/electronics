@@ -24,6 +24,7 @@ a {
 
 .container {
 	position: relative;
+	height: max-content;
 }
 
 .clr {

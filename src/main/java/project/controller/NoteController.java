@@ -1,8 +1,10 @@
 package project.controller;
 
+import last.Note;
 import last.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import project.model.note.*;
 import project.service.Service;
 import project.service.ServiceNote;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -33,6 +37,8 @@ public class NoteController {
     private RamForNotebook ramForNotebook = null;
     private ScreenForNotebook screenForNotebook = null;
     private WeightAndSizeForNotebook weightAndSizeForNotebook = null;
+
+    private Integer id;
 
 
     @Autowired(required = true)
@@ -247,11 +253,89 @@ public class NoteController {
     @RequestMapping(value = "/note_admin_battery/add", method = RequestMethod.POST)
     public String getBattery(@ModelAttribute("user") User user, @ModelAttribute("battery") BatteryForNotebook batteryForNotebook) {
         this.batteryForNotebook = batteryForNotebook;
+        return "redirect:http://localhost:8080/note_admin_complectation";
+    }
+
+    @RequestMapping(value = "/note_admin_complectation", method = RequestMethod.GET)
+    public String showComplectation(Model model) {
+        model.addAttribute("user", UserController.getCurrentUser());
+        model.addAttribute("complectation", new ComplectationForNotebook());
+        return "note/note_admin_complectation";
+    }
+
+    @RequestMapping(value = "/note_admin_complectaion/add", method = RequestMethod.POST)
+    public String getComplectation(@ModelAttribute("user") User user, @ModelAttribute("complectation")ComplectationForNotebook complectationForNotebook) {
+        this.complectationForNotebook = complectationForNotebook;
+        this.notebook.setIdBatteryForNotebook(this.batteryForNotebook.getId());
+        this.notebook.setIdCameraSoundForNotebook(this.cameraSoundForNotebook.getId());
+        this.notebook.setIdCommonInformationForNotebook(this.commonInformationForNotebook.getId());
+        this.notebook.setIdComplectationForNotebook(this.complectationForNotebook.getId());
+        this.notebook.setIdConstructionForNotebook(this.constructionForNotebook.getId());
+        this.notebook.setIdDataForNotebook(this.dataForNotebook.getId());
+        this.notebook.setIdFounctionsForNotebook(this.founctionsForNotebook.getId());
+        this.notebook.setIdGraphicsForNotebook(this.graphicsForNotebook.getId());
+        this.notebook.setIdInterfaceForNotebook(this.interfaceForNotebook.getId());
+        this.notebook.setIdKeyboardAndTouchpadForNotebook(this.keyboardAndTouchpadForNotebook.getId());
+        this.notebook.setIdProcessorForNotebook(this.processorForNotebook.getId());
+        this.notebook.setIdRamForNotebook(this.ramForNotebook.getId());
+        this.notebook.setIdScreenForNotebook(this.screenForNotebook.getId());
+        this.notebook.setIdWeightAndSizeForNotebook(this.weightAndSizeForNotebook.getId());
         this.noteService.add(this.notebook, this.batteryForNotebook, this.cameraSoundForNotebook, this.commonInformationForNotebook,
                 this.complectationForNotebook, this.constructionForNotebook, this.dataForNotebook, this.founctionsForNotebook,
                 this.graphicsForNotebook, this.interfaceForNotebook, this.keyboardAndTouchpadForNotebook,
                 this.processorForNotebook, this.ramForNotebook, this.screenForNotebook, this.weightAndSizeForNotebook);
         return "redirect:http://localhost:8080/client";
     }
+
+    @RequestMapping(value = "/note_all", method = RequestMethod.GET)
+    public String showAll(Model model) {
+        model.addAttribute("user", UserController.getCurrentUser());
+        model.addAttribute("listNote", this.noteService.getAllnote());
+        return "note/note_all";
+    }
+
+    @RequestMapping("/deleteNote/{id}")
+    public String deleteNote(@PathVariable("id") Integer id, Model model){
+        this.noteService.remove(id);
+        return "redirect:http://localhost:8080/note_all";
+    }
+
+    @RequestMapping(value = "/note_change_price/{id}",  method = RequestMethod.POST)
+    public String changePrice(@PathVariable("id") Integer id, Model model, HttpServletRequest httpServletRequest){
+        String price = httpServletRequest.getParameter("price");
+        System.out.println("/////////////////////////////////////////////");
+        System.out.println(price);
+        return "redirect:http://localhost:8080/note_all";
+    }
+
+    @RequestMapping("/noteOne/{id}")
+    public String showNoteOneId(@PathVariable("id") Integer id, Model model){
+        this.id = id;
+        return "redirect:http://localhost:8080/showOne";
+    }
+
+
+    @RequestMapping(value = "/showOne", method = RequestMethod.GET)
+    public String showNoteOne(Model model) {
+        Note note = this.noteService.getById(id);
+        model.addAttribute("user", UserController.getCurrentUser());
+        model.addAttribute("notebook", note.getNotebook());
+        model.addAttribute("common", note.getCommonInformationForNotebook());
+        model.addAttribute("processor", note.getProcessorForNotebook());
+        model.addAttribute("construction", note.getConstructionForNotebook());
+        model.addAttribute("size", note.getWeightAndSizeForNotebook());
+        model.addAttribute("screen", note.getScreenForNotebook());
+        model.addAttribute("ram", note.getRamForNotebook());
+        model.addAttribute("data", note.getDataForNotebook());
+        model.addAttribute("graphics", note.getGraphicsForNotebook());
+        model.addAttribute("camera", note.getCameraSoundForNotebook());
+        model.addAttribute("keyboard", note.getKeyboardAndTouchpadForNotebook());
+        model.addAttribute("function",note.getFounctionsForNotebook());
+        model.addAttribute("interfac", note.getInterfaceForNotebook());
+        model.addAttribute("battery", note.getBatteryForNotebook());
+        model.addAttribute("complectation", note.getComplectationForNotebook());
+        return "note/show_one_note";
+    }
+
 
 }
