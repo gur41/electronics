@@ -53,9 +53,9 @@ public class UserController {
         }
         currentUser = user;
         if (user.getRole().equals("admin"))
-            return "redirect:http://localhost:8080/carrier";
+            return "redirect:http://localhost:8080/note_all";
         else
-            return "redirect:http://localhost:8080/client";
+            return "redirect:http://localhost:8080/client_note_all";
     }
 
 
@@ -89,8 +89,11 @@ public class UserController {
             currentUser = (User)this.userService.getByLoginP(user.getLogin());
             if(currentUser.getRole().equals("Грузовладелец"))
                 return "redirect:http://localhost:8080/client";
-            else
-                return "redirect:http://localhost:8080/carrier";
+            if(currentUser.getRole().equals("admin"))
+                return "redirect:http://localhost:8080/note_all";
+            if(currentUser.getRole().equals("client"))
+                return "redirect:http://localhost:8080/client_note_all";
+            return "redirect:http://localhost:8080/client_note_all";
         }
         else {
             return "redirect:/users";

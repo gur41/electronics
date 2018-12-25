@@ -42,7 +42,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="name">
-                    ЛОГИСТИКС
+                    TECHNOLAND
                 </div>
             </div>
 
@@ -74,6 +74,12 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
+                <li class="">
+                    <a href="<c:url value="/"/>" target="_self">Главная</a>
+                </li>
+                <li class="">
+                    <a href="<c:url value="/note_all"/>" target="_self">Ноутбуки</a>
+                </li>
                 <li class="">
                     <a href="<c:url value="/order_client"/>" target="_self">Заявки</a>
                 </li>

@@ -65,7 +65,7 @@
     <div class="row">
       <div class="col-md-7">
         <div class="name">
-          ЛОГИСТИКС
+          TECHNOLAND
         </div>
       </div>
 
@@ -102,7 +102,7 @@
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="">
-          <%--<!-- <a href="<c:url value="/flowers_client"/>" target="_self">Цветы</a> -->--%>
+          <a href="<c:url value="/client_note_all"/>" target="_self">Ноутбуки</a>
         </li>
         <li class="">
           <%--<!-- <a href="<c:url value="/bouquets_client"/>" target="_self">Букеты</a> -->--%>

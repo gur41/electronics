@@ -65,6 +65,7 @@
                 <value>project.model.OrderUserElectronic</value>
 
 
+
             </list>
         </property>
         <property name="hibernateProperties">
@@ -190,6 +191,14 @@
 
     <bean id="pointsService" class="project.service.PointsServiceImpl">
         <property name="pointsDao" ref="pointsDao"/>
+    </bean>
+
+    <bean id="orderUserElectronicDao" class="project.dao.note.OrderUserElectronicDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+
+    <bean id="orderUserElectronicService" class="project.service.OrderUserElectronicServiceImpl">
+        <property name="orderUserElectronicDao" ref="orderUserElectronicDao"/>
     </bean>
 
     <bean id="transportDao" class="project.dao.TransportDaoImpl">

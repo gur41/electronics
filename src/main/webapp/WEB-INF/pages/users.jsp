@@ -39,7 +39,7 @@
         <div class="row">
             <div class="col-md-7">
                 <div class="name">
-                    ЛОГИСТИКС
+                    TECHNOLAND
                 </div>
             </div>
 

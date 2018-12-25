@@ -77,12 +77,18 @@
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="">
-                    <a href="<c:url value="/order_client"/>" target="_self">Заявки</a>
+                    <a href="<c:url value="/"/>" target="_self">Главная</a>
                 </li>
-                <%-- <li class="">
-                    <a href="<c:url value="/flowers_admin"/>" target="_self">Цветы</a>
-                </li>
-                <li class="">
+                <c:choose>
+                    <c:when test="${user.login ne null}">
+                        <li class="">
+                            <a href="<c:url value="/show_my_orders"/>" target="_self">Мои заявки</a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                    </c:otherwise>
+                </c:choose>
+                <%--<li class="">
                     <a href="<c:url value="/bouquets_admin"/>" target="_self">Букеты</a>
                 </li>
                 <li class="">
@@ -136,97 +142,62 @@
                 <div class="col-md-12">
                     <h1 class="h2 page-header"
                         style="color:#8d1645; font-family: 'Lobster', cursive; margin-top: -1px;
-                        text-align: center;">Пункт прибытия/назначения</h1>
+                        text-align: center;">Ноутбуки</h1>
                     <section class="main">
 
 
-                        <div class="headname">
-                            <h1>Форма для оформления доставки товара</h1>
-                        </div>
-
-                        <c:url var="addAction" value="/note_admin_processor/add"/>
-
-                        <form:form action="${addAction}" modelAttribute="processor" class="form-horizontal">
+                        <%--<div class="headname">
+                            <h1>Ноутбуки</h1>
+                        </div>--%>
 
 
-                        <div class="form-group">
-                            <form:label path="platform" class="col-sm-2 control-label">
-                                <spring:message text="Платформа"/>
-                            </form:label>
-                            <div class="col-sm-4">
-                                <form:input path="platform" pattern="(.[a-zA-Z\s()0-9,_-]*)"
-                                            title="Используйте латинские символы и цифры." class="form-control"/>
+                        <c:if test="${!empty listNote}">
+                            <table class="tg">
+                                <%--<tr>
+                                    <th width="240">Картинка</th>
+                                    <th width="120">Название</th>
+                                    <th width="120">Описание</th>
+                                    <th width="120">Цена</th>
+                                    <th width="60">Удалить</th>
+                                    <th width="240">Удалить</th>
+                                </tr>--%>
+                                <c:set var="j" value="0"/>
+                                <c:forEach items="${listNote}" var="note">
+                                    <tr>
+                                        <c:set var="nm" value="getPicture${j=j+1}"/>
+                                        <c:choose>
+                                            <c:when test="${user.login ne null}">
+                                                <td><a href="<c:url value='/noteOne/${note.id}'/>">${note.name}</a></td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td><a href="<c:url value='/noteOneAdmin/${note.id}'/>">${note.name}</a></td>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <td><c:set var="nm" value="getPicture${j=j+1}"/>
+                                            <div class="col-md-2" id="${nm}">
+                                                <script>
+                                                    var adress = "/resources/images/";
+                                                    var img = document.createElement('img');
+                                                    img.setAttribute('src', adress + "${note.photo}");
+                                                    img.height = 150;
+                                                    document.getElementById("${nm}").appendChild(img);
+                                                </script>
+                                            </div>
+                                        </td>
+                                        <td>${note.info}</td>
+                                        <td>${note.price}</td>
+
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </c:if>
+
+                        <c:if test="${empty listNote}">
+                            <div class="headname">
+                                <h1>Список ноутбуков пуст</h1>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <form:label path="processorName" class="col-sm-2 control-label">
-                                <spring:message text="Процессор"/>
-                            </form:label>
-                            <div class="col-sm-4">
-                                <form:input path="processorName" pattern="(.[a-zA-Z\s()0-9,_-]*)"
-                                            title="Используйте латинские символы и цифры." class="form-control"/>
-                            </div>
-                        </div>
+                        </c:if>
 
-                        <div class="form-group">
-                            <form:label path="modelProcessor" class="col-sm-2 control-label">
-                                <spring:message text="Модель процессора"/>
-                            </form:label>
-                            <div class="col-sm-4">
-                                <form:input path="modelProcessor" pattern="(.[a-zA-Z\s()0-9,_-]*)"
-                                            title="Используйте латинские символы и цифры." class="form-control"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <form:label path="core" class="col-sm-2 control-label">
-                                <spring:message text="Количество ядер"/>
-                            </form:label>
-                            <div class="col-sm-4">
-                                <form:input path="core" pattern="(.[0-9]*)"
-                                            title="Используйте цифры." class="form-control"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <form:label path="frequency" class="col-sm-2 control-label">
-                                <spring:message text="Тактовая частота"/>
-                            </form:label>
-                            <div class="col-sm-4">
-                                <form:input path="frequency" pattern="(.[0-9]*)"
-                                            title="Используйте цифры." class="form-control"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <form:label path="turboFrequency" class="col-sm-2 control-label">
-                                <spring:message text="Turbo-частота"/>
-                            </form:label>
-                            <div class="col-sm-4">
-                                <form:input path="turboFrequency" pattern="(.[0-9]*)"
-                                            title="Используйте цифры." class="form-control"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <form:label path="powerUsage" class="col-sm-2 control-label">
-                                <spring:message text="Энергопотребление процессора"/>
-                            </form:label>
-                            <div class="col-sm-4">
-                                <form:input path="powerUsage" pattern="(.[0-9]*)"
-                                            title="Используйте цифры." class="form-control"/>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <input type="submit" class="btn btn-success"
-                                       value="<spring:message text="Продолжить"/>"/>
-                            </div>
-                        </div>
-                    </form:form>
-                        </div>
                     </section>
 
                 </div>

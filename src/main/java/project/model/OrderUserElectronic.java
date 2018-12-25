@@ -20,6 +20,7 @@ public class OrderUserElectronic {
 
     @Id
     @Column(name = "id_order", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getIdOrder() {
         return idOrder;
     }

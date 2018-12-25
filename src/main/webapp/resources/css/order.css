@@ -93,5 +93,8 @@
 }
 .fir{
     position: absolute;
-
+}
+.fir2{
+    position: absolute;
+    margin-top: -10px;
 }

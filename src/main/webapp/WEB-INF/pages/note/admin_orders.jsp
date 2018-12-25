@@ -131,7 +131,7 @@
                             <h1>Список заявок</h1>
                         </div>
 
-                        <c:if test="${!empty listOrderUser}">
+                        <c:if test="${!empty listOrderUserElectronics}">
                             <table class="tg">
                                 <tr>
                                     <th width="40">ID</th>
@@ -139,40 +139,40 @@
                                     <th width="80">Имя</th>
                                     <th width="80">Номер телефона</th>
                                     <th width="80">E-mail</th>
-                                    <th width="120">Цена доставки товара</th>
-                                    <th width="120">Вес груза</th>
-                                    <th width="180">Статус</th>
+                                    <th width="120">Цена</th>
+                                    <th width="120">Название товара</th>
+                                    <th width="120">Статус</th>
                                 </tr>
-                                <c:forEach items="${listOrderUser}" var="orderUser">
+                                <c:forEach items="${listOrderUserElectronics}" var="order">
                                     <tr>
-                                        <td>${orderUser.idRouteOrder}</td>
-                                        <td>${orderUser.secondName}</td>
-                                        <td>${orderUser.firstName}</td>
-                                        <td>${orderUser.phone}</td>
-                                        <td>${orderUser.eMail}</td>
-                                        <td>${orderUser.price}</td>
-                                        <td>${orderUser.weight}</td>
+                                        <td>${order.idOrder}</td>
+                                        <td>${order.secondName}</td>
+                                        <td>${order.firstName}</td>
+                                        <td>${order.phone}</td>
+                                        <td>${order.eMail}</td>
+                                        <td>${order.price}</td>
+                                        <td>${order.name}</td>
                                         <td>
-                                            <div class="fir">
+                                            <div class="fir2">
                                             <li class="dropdown show">
                                                 <a href="<c:url value="/users/currentUser"/>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                                            ${orderUser.status}
+                                                            ${order.status}
                                                     <span class="caret"></span>
                                                 </a>
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li class="divider"></li>
                                                     <c:choose>
-                                                        <c:when test="${orderUser.status eq 'Оформлена'}">
-                                                            <li><a href="<c:url value="/changeStatus/${orderUser.idOrder}${'_Принята'}"/>" target="_self">Принята</a></li>
-                                                            <li><a href="<c:url value="/changeStatus/${orderUser.idOrder}${'_Транспортируется'}"/>" target="_self">Транспортируется</a></li>
-                                                            <li><a href="<c:url value="/changeStatus/${orderUser.idOrder}${'_Выполнена'}"/>" target="_self">Выполнена</a></li>
+                                                        <c:when test="${order.status eq 'Оформлена'}">
+                                                            <li><a href="<c:url value="/changeStatusForElectronnicOrder/${order.idOrder}${'_Принята'}"/>" target="_self">Принята</a></li>
+                                                            <li><a href="<c:url value="/changeStatusForElectronnicOrder/${order.idOrder}${'_ Выполняется'}"/>" target="_self">Выполняется</a></li>
+                                                            <li><a href="<c:url value="/changeStatusForElectronnicOrder/${order.idOrder}${'_Выполнена'}"/>" target="_self">Выполнена</a></li>
                                                         </c:when>
-                                                        <c:when test="${orderUser.status eq 'Принята'}">
-                                                            <li><a href="<c:url value="/changeStatus/${orderUser.idOrder}${'_Транспортируется'}"/>" target="_self">Транспортируется</a></li>
-                                                            <li><a href="<c:url value="/changeStatus/${orderUser.idOrder}${'_Выполнена'}"/>" target="_self">Выполнена</a></li>
+                                                        <c:when test="${order.status eq 'Принята'}">
+                                                            <li><a href="<c:url value="/changeStatusForElectronnicOrder/${order.idOrder}${'_Выполняется'}"/>" target="_self">Выполянется</a></li>
+                                                            <li><a href="<c:url value="/changeStatusForElectronnicOrder/${order.idOrder}${'_Выполнена'}"/>" target="_self">Выполнена</a></li>
                                                         </c:when>
-                                                        <c:when test="${orderUser.status eq 'Транспортируется'}">
-                                                            <li><a href="<c:url value="/changeStatus/${orderUser.idOrder}${'_Выполнена'}"/>" target="_self">Выполнена</a></li>
+                                                        <c:when test="${order.status eq 'Выполняется'}">
+                                                            <li><a href="<c:url value="/changeStatusForElectronnicOrder/${order.idOrder}${'_Выполнена'}"/>" target="_self">Выполнена</a></li>
                                                         </c:when>
                                                     </c:choose>
                                                 </ul>
@@ -184,7 +184,7 @@
                             </table>
                         </c:if>
 
-                        <c:if test="${empty listOrderUser}">
+                        <c:if test="${empty listOrderUserElectronics}">
                             <div class="headname">
                                 <h1>Список заявок пуст</h1>
                             </div>

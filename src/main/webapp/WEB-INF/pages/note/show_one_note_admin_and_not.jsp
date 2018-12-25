@@ -80,8 +80,9 @@
                     <a href="<c:url value="/"/>" target="_self">Главная</a>
                 </li>
                 <li class="">
-                    <a href="<c:url value="/show_my_orders"/>" target="_self">Мои заявки</a>
+                    <a href="<c:url value="/client_note_all"/>" target="_self">Ноутбуки</a>
                 </li>
+
                 <%-- <li class="">
                     <a href="<c:url value="/flowers_admin"/>" target="_self">Цветы</a>
                 </li>
@@ -156,7 +157,7 @@
                         text-align: center;">${notebook.price}</h1></td>
                                 </tr>
 
-                                <tr>
+                                <%--<tr>
                                     <td align="center">
                                         <c:url var="addAction" value="/add_order_for_note/${notebook.id}"/>
 
@@ -169,7 +170,7 @@
                                             </div>
                                         </form:form>
                                     </td>
-                                </tr>
+                                </tr>--%>
 
                                 <tr>
                                     <td><h1 class="h2 page-header"

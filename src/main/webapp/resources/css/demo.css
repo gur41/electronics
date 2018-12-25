@@ -24,6 +24,10 @@ a {
 
 .container {
 	position: relative;
+	height: auto;
+}
+.container2{
+	position: relative;
 	height: max-content;
 }
 
