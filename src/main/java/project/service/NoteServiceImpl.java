@@ -1,8 +1,8 @@
 package project.service;
 
 
-import last.InfoNote;
-import last.Note;
+import project.last.InfoNote;
+import project.last.Note;
 import org.springframework.transaction.annotation.Transactional;
 import project.dao.Dao;
 import project.model.note.CommonInformationForNotebook;

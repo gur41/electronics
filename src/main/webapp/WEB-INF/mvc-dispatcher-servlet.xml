@@ -41,12 +41,12 @@
         <property name="annotatedClasses">
             <list>
                 <value>project.clasess.Property</value>
-                <value>last.User</value>
-                <value>last.Transport</value>
-                <value>last.Maps</value>
-                <value>last.Route</value>
-                <value>last.Points</value>
-                <value>last.OrderUser</value>
+                <value>project.last.User</value>
+                <value>project.last.Transport</value>
+                <value>project.last.Maps</value>
+                <value>project.last.Route</value>
+                <value>project.last.Points</value>
+                <value>project.last.OrderUser</value>
                 <value>project.model.note.CameraSoundForNotebook</value>
                 <value>project.model.note.CommonInformationForNotebook</value>
                 <value>project.model.note.ComplectationForNotebook</value>

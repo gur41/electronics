@@ -1,6 +1,6 @@
 package project.service;
 
-import last.Maps;
+import project.last.Maps;
 import org.springframework.transaction.annotation.Transactional;
 import project.dao.Dao;
 

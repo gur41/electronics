@@ -1,7 +1,7 @@
 package project.service;
 
-import last.InfoNote;
-import last.Note;
+import project.last.InfoNote;
+import project.last.Note;
 import project.model.note.*;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package project.dao;
 
-import last.Maps;
+import project.last.Maps;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;

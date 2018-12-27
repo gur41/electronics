@@ -1,6 +1,6 @@
 package project.model;
 
-import last.User;
+import project.last.User;
 
 import javax.persistence.*;
 

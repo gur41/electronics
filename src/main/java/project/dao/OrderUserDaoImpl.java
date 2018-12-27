@@ -1,7 +1,7 @@
 package project.dao;
 
 
-import last.OrderUser;
+import project.last.OrderUser;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package last;
+package project.last;
 
 import project.model.note.*;
 

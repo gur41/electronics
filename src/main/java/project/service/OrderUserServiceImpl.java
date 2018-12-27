@@ -1,6 +1,6 @@
 package project.service;
 
-import last.OrderUser;
+import project.last.OrderUser;
 import org.springframework.transaction.annotation.Transactional;
 import project.dao.Dao;
 

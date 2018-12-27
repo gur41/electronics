@@ -1,4 +1,4 @@
-package last;
+package project.last;
 
 public class InfoNote {
     private Integer id;

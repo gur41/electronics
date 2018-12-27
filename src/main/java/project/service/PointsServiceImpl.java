@@ -2,7 +2,7 @@ package project.service;
 
 import org.springframework.transaction.annotation.Transactional;
 import project.dao.Dao;
-import last.Points;
+import project.last.Points;
 
 import java.util.List;
 

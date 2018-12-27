@@ -1,6 +1,6 @@
 package project.dao;
 
-import last.Route;
+import project.last.Route;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;

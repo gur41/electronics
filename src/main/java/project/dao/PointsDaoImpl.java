@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import last.Points;
+import project.last.Points;
 
 import java.util.ArrayList;
 import java.util.List;
