@@ -24,7 +24,7 @@ public class OrderUserElectronicServiceImpl implements Service<OrderUserElectron
     @Override
     @Transactional
     public void update(OrderUserElectronic orderUserElectronic) {
-
+        this.orderUserElectronicDao.update(orderUserElectronic);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class OrderUserElectronicServiceImpl implements Service<OrderUserElectron
     @Override
     @Transactional
     public OrderUserElectronic getById(int id) {
-        return null;
+        return this.orderUserElectronicDao.getById(id);
     }
 
     @Override

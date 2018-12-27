@@ -77,23 +77,9 @@
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="">
-                    <a href="<c:url value="/order_client"/>" target="_self">Заявки</a>
+                    <a href="<c:url value="/note_all"/>" target="_self">Ноутбуки</a>
                 </li>
-                <%-- <li class="">
-                    <a href="<c:url value="/flowers_admin"/>" target="_self">Цветы</a>
-                </li>
-                <li class="">
-                    <a href="<c:url value="/bouquets_admin"/>" target="_self">Букеты</a>
-                </li>
-                <li class="">
-                    <a href="<c:url value="/compositions_admin"/>" target="_self">Копмозиции</a>
-                </li>
-                <li class="">
-                    <a href="<c:url value="/packs_admin"/>" target="_self">Упаковки</a>
-                </li>
-                <li class="">
-                    <a href="<c:url value="/decorations_admin"/>" target="_self">Украшения</a>
-                </li> --%>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -136,13 +122,13 @@
                 <div class="col-md-12">
                     <h1 class="h2 page-header"
                         style="color:#8d1645; font-family: 'Lobster', cursive; margin-top: -1px;
-                        text-align: center;">Пункт прибытия/назначения</h1>
+                        text-align: center;">Добавление ноутбука</h1>
                     <section class="main">
 
 
-                        <div class="headname">
+                        <%--<div class="headname">
                             <h1>Форма для оформления доставки товара</h1>
-                        </div>
+                        </div>--%>
 
                         <c:url var="addAction" value="/note_admin/add"/>
 

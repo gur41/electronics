@@ -77,8 +77,18 @@
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="">
-                    <a href="<c:url value="/order_client"/>" target="_self">Заявки</a>
+                    <a href="<c:url value="/note_all"/>" target="_self">Ноутбуки</a>
                 </li>
+
+                <li class="">
+                    <a href="<c:url value="/note_admin"/>" target="_self">Добавить ноутбук</a>
+                </li>
+
+                <li class="">
+                    <a href="<c:url value="/admin_orders"/>" target="_self">Заявки</a>
+                </li>
+
+
                 <%-- <li class="">
                     <a href="<c:url value="/flowers_admin"/>" target="_self">Цветы</a>
                 </li>
@@ -159,7 +169,7 @@
                                 <c:forEach items="${listNote}" var="note">
                                     <tr>
                                         <c:set var="nm" value="getPicture${j=j+1}"/>
-                                        <td><a href="<c:url value='/noteOne/${note.id}'/>">${note.name}</a></td>
+                                        <td><a href="<c:url value='/noteOneAdmin/${note.id}'/>">${note.name}</a></td>
                                         <td><c:set var="nm" value="getPicture${j=j+1}"/>
                                             <div class="col-md-2" id="${nm}">
                                                 <script>

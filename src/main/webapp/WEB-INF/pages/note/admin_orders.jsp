@@ -65,7 +65,15 @@
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="">
-                    <a href="<c:url value="/carrier"/>" target="_self">Добавить маршрут</a>
+                    <a href="<c:url value="/note_all"/>" target="_self">Ноутбуки</a>
+                </li>
+
+                <li class="">
+                    <a href="<c:url value="/note_admin"/>" target="_self">Добавить ноутбук</a>
+                </li>
+
+                <li class="">
+                    <a href="<c:url value="/admin_orders"/>" target="_self">Заявки</a>
                 </li>
                 <%-- <li class="">
                     <a href="<c:url value="/flowers_admin"/>" target="_self">Цветы</a>

@@ -153,7 +153,7 @@
                   <img src="resources/images/img4.jpg" alt="...">
                   <div class="carousel-caption">
 
-                    <p><em>Автомобильный транспорт</em></p>
+                    <p><em>Ноутбуки</em></p>
                   </div>
                 </div>
 
@@ -161,7 +161,7 @@
                   <img src="resources/images/img3.jpg" alt="...">
                   <div class="carousel-caption">
 
-                    <p><em>Морской транспорт</em></p>
+                    <p><em>Мобильные телефоны</em></p>
                   </div>
                 </div>
 
@@ -171,14 +171,14 @@
                   <img src="resources/images/img1.jpg" alt="...">
                   <div class="carousel-caption">
 
-                    <p><em>Железнодорожный транспорт</em></p>
+                    <p><em>Электронные книги</em></p>
                   </div>
                 </div>
 
                 <div class="item">
                   <img src="resources/images/img2.jpg" alt="...">
                   <div class="carousel-caption">
-                    <p><em>Авиационный транспорт</em></p>
+                    <p><em>Телевизоры</em></p>
                   </div>
                 </div>
 

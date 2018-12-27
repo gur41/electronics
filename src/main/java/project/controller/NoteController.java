@@ -299,7 +299,7 @@ public class NoteController {
                 this.complectationForNotebook, this.constructionForNotebook, this.dataForNotebook, this.founctionsForNotebook,
                 this.graphicsForNotebook, this.interfaceForNotebook, this.keyboardAndTouchpadForNotebook,
                 this.processorForNotebook, this.ramForNotebook, this.screenForNotebook, this.weightAndSizeForNotebook);
-        return "redirect:http://localhost:8080/client";
+        return "redirect:http://localhost:8080/note_all";
     }
 
     @RequestMapping(value = "/note_all", method = RequestMethod.GET)
@@ -404,6 +404,8 @@ public class NoteController {
     @RequestMapping("/changeStatusForElectronnicOrder/{string}")
     public String changeStatus(@PathVariable("string") String string, Model model){
         //this.orderUserService.add(new OrderUser());
+        System.out.println("111111111111111111111111111111");
+        System.out.println(string);
         String[] arg = string.split("_");
         String status = arg[1];
         Integer id = Integer.parseInt(arg[0]);
@@ -412,6 +414,7 @@ public class NoteController {
         System.out.println("id "+id);
         System.out.println("STRING : "+string);*/
         OrderUserElectronic orderUserElectronic = (OrderUserElectronic) this.orderUserElectronicService.getById(id);
+        System.out.println(orderUserElectronic.geteMail());
         orderUserElectronic.setStatus(status);
         this.orderUserElectronicService.update(orderUserElectronic);
         System.out.println("status "+orderUserElectronic.getStatus());
