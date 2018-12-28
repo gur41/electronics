@@ -74,19 +74,25 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
-                 <li class="">
-                    <a href="<c:url value="/order_client"/>" target="_self">Заявки</a>
+                <li class="">
+                    <a href="<c:url value="/admin_orders"/>" target="_self">Заказы на ноутбуки</a>
                 </li>
                 <li class="">
-                    <a href="<c:url value="/note_admin"/>" target="_self">Ноутбук</a>
+                    <a href="<c:url value="/note_admin"/>" target="_self">Добавить ноутбук</a>
+                </li>
+                <li class="">
+                    <a href="<c:url value="/note_all"/>" target="_self">Ноутбуки</a>
+                </li>
+                <li class="">
+                    <a href="<c:url value="/all_routes_for_carrier"/>" target="_self">Список маршрутов</a>
+                </li>
+                <li class="">
+                    <a href="<c:url value="/client"/>" target="_self">Заказать доставку товара</a>
+                </li>
+                <li class="">
+                    <a href="<c:url value="/order_client"/>" target="_self">Заказы на доставку</a>
                 </li>
                 <%--<li class="">
-                    <a href="<c:url value="/compositions_admin"/>" target="_self">Копмозиции</a>
-                </li>
-                <li class="">
-                    <a href="<c:url value="/packs_admin"/>" target="_self">Упаковки</a>
-                </li>
-                <li class="">
                     <a href="<c:url value="/decorations_admin"/>" target="_self">Украшения</a>
                 </li> --%>
             </ul>
@@ -130,12 +136,12 @@
                 <div class="col-md-12">
                     <h1 class="h2 page-header"
                         style="color:#8d1645; font-family: 'Lobster', cursive; margin-top: -1px;
-                        text-align: center;">Пункт прибытия/назначения</h1>
+                        text-align: center;">Заказ доставки</h1>
                     <section class="main">
 
 
                         <div class="headname">
-                            <h1>Форма для оформления доставки товара</h1>
+                            <h1>Форма для оформления заказа на доствку товара</h1>
                         </div>
 
                          <c:url var="addAction" value="/client/showClient"/>

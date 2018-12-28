@@ -81,7 +81,7 @@
                     <a href="<c:url value="/note_all"/>" target="_self">Ноутбуки</a>
                 </li>
                 <li class="">
-                    <a href="<c:url value="/order_client"/>" target="_self">Заявки</a>
+                    <a href="<c:url value="/order_client"/>" target="_self">Мои заказы</a>
                 </li>
 
             </ul>
@@ -139,38 +139,48 @@
 
                             <div class="form-group">
                                 <form:label path="firstName" class="col-sm-2 control-label">
-                                    <spring:message text="Имя" />
+                                    <spring:message text="Имя *" />
                                 </form:label>
                                 <div class="col-sm-4">
-                                    <form:input path="firstName" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)" title="Используйте латинские или русские символы." class="form-control"/>
+                                    <form:input path="firstName"  required="true" pattern="(.[a-zA-Zа-яА-Я\sё,Ё_-]*)" title="Используйте латинские или русские символы." class="form-control"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <form:label path="secondName" class="col-sm-2 control-label">
-                                    <spring:message text="Фамилия"/>
+                                    <spring:message text="Фамилия *"/>
                                 </form:label>
                                 <div class="col-sm-4">
-                                    <form:input path="secondName" pattern="(.[a-zA-Zа-яА-Я\s,ёЁ_-]*)" title="Используйте латинские или русские символы." class="form-control"/>
+                                    <form:input path="secondName" required="true" pattern="(.[a-zA-Zа-яА-Я\s,ёЁ_-]*)" title="Используйте латинские или русские символы." class="form-control"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <form:label path="phone" class="col-sm-2 control-label">
-                                    <spring:message text="Номер телефона"/>
+                                    <spring:message text="Номер телефона *"/>
                                 </form:label>
                                 <div class="col-sm-2">
-                                    <form:input path="phone" pattern="^[+]?([0-9]*[.])?[0-9]+$" title="Используйте число для ввода." class="form-control"/>
+                                    <form:input path="phone" required="true" pattern="^[+]?([0-9]*[.])?[0-9]+$" title="Используйте число для ввода." class="form-control"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <form:label path="eMail" class="col-sm-2 control-label">
-                                    <spring:message text="E-mail"/>
+                                    <spring:message text="E-mail *"/>
                                 </form:label>
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
                                     <form:input path="eMail" pattern="(.[a-zA-Zа-яА-Я\sё,@.Ё_-]*)" title="Используйте число для ввода." class="form-control"/>
                                 </div>
                             </div>
+
+                        <div class="form-group">
+                            <form:label path="adress" class="col-sm-2 control-label">
+                                <spring:message text="Адрес доставки"/>
+                            </form:label>
+                            <div class="col-sm-4">
+                                <form:input path="adress" pattern="(.[a-zA-Zа-яА-Я\sё,@.Ё_-]*)" title="Используйте русские или латинские символы." class="form-control"/>
+                            </div>
+                        </div>
+
 
 
 

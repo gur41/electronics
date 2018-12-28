@@ -65,23 +65,24 @@
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="">
-                    <a href="<c:url value="/note_all"/>" target="_self">Ноутбуки</a>
+                    <a href="<c:url value="/admin_orders"/>" target="_self">Заказы на ноутбуки</a>
                 </li>
-
                 <li class="">
                     <a href="<c:url value="/note_admin"/>" target="_self">Добавить ноутбук</a>
                 </li>
-
                 <li class="">
-                    <a href="<c:url value="/admin_orders"/>" target="_self">Заявки</a>
-                </li>
-                <%-- <li class="">
-                    <a href="<c:url value="/flowers_admin"/>" target="_self">Цветы</a>
+                    <a href="<c:url value="/note_all"/>" target="_self">Ноутбуки</a>
                 </li>
                 <li class="">
-                    <a href="<c:url value="/bouquets_admin"/>" target="_self">Букеты</a>
+                    <a href="<c:url value="/all_routes_for_carrier"/>" target="_self">Список маршрутов</a>
                 </li>
                 <li class="">
+                    <a href="<c:url value="/client"/>" target="_self">Заказать доставку товара</a>
+                </li>
+                <li class="">
+                    <a href="<c:url value="/order_client"/>" target="_self">Заказы на доставку</a>
+                </li>
+                <%--<li class="">
                     <a href="<c:url value="/compositions_admin"/>" target="_self">Копмозиции</a>
                 </li>
                 <li class="">
@@ -89,7 +90,7 @@
                 </li>
                 <li class="">
                     <a href="<c:url value="/decorations_admin"/>" target="_self">Украшения</a>
-                </li> --%>
+                </li>--%>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                  <li class="dropdown">
@@ -131,13 +132,13 @@
                 <div class="col-md-12">
                     <h1 class="h2 page-header"
                         style="color:#8d1645; font-family: 'Lobster', cursive; margin-top: -1px;
-                        text-align: center;">Пункт прибытия/назначения</h1>
+                        text-align: center;">Заказы на ноутбуки</h1>
                     <section class="main">
 
 
-                        <div class="headname">
+                        <%--<div class="headname">
                             <h1>Список заявок</h1>
-                        </div>
+                        </div>--%>
 
                         <c:if test="${!empty listOrderUserElectronics}">
                             <table class="tg">
@@ -147,6 +148,7 @@
                                     <th width="80">Имя</th>
                                     <th width="80">Номер телефона</th>
                                     <th width="80">E-mail</th>
+                                    <th width="120">Адрес доставки</th>
                                     <th width="120">Цена</th>
                                     <th width="120">Название товара</th>
                                     <th width="120">Статус</th>
@@ -158,6 +160,7 @@
                                         <td>${order.firstName}</td>
                                         <td>${order.phone}</td>
                                         <td>${order.eMail}</td>
+                                        <td>${order.adress}</td>
                                         <td>${order.price}</td>
                                         <td>${order.name}</td>
                                         <td>

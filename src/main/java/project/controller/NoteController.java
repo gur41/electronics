@@ -79,7 +79,12 @@ public class NoteController {
         this.weightAndSizeForNotebook = null;
         model.addAttribute("user", UserController.getCurrentUser());
         model.addAttribute("notebook", new Notebook());
-        return "note_admin";
+        if(UserController.getCurrentUser()!=null)
+            if(UserController.getCurrentUser().getPassword().equals("admin"))
+            return "note_admin";
+            else return "/";
+        else
+            return  "/";
     }
 
     @RequestMapping(value = "/note_admin/add", method = RequestMethod.POST)

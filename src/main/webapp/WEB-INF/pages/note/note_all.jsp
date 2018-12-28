@@ -77,33 +77,26 @@
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="">
-                    <a href="<c:url value="/note_all"/>" target="_self">Ноутбуки</a>
+                    <a href="<c:url value="/admin_orders"/>" target="_self">Заказы на ноутбуки</a>
                 </li>
-
                 <li class="">
                     <a href="<c:url value="/note_admin"/>" target="_self">Добавить ноутбук</a>
                 </li>
-
                 <li class="">
-                    <a href="<c:url value="/admin_orders"/>" target="_self">Заявки</a>
+                    <a href="<c:url value="/note_all"/>" target="_self">Ноутбуки</a>
+                </li>
+                <li class="">
+                    <a href="<c:url value="/all_routes_for_carrier"/>" target="_self">Список маршрутов</a>
+                </li>
+                <li class="">
+                    <a href="<c:url value="/client"/>" target="_self">Заказать доставку товара</a>
+                </li>
+                <li class="">
+                    <a href="<c:url value="/order_client"/>" target="_self">Заказы на доставку</a>
                 </li>
 
 
-                <%-- <li class="">
-                    <a href="<c:url value="/flowers_admin"/>" target="_self">Цветы</a>
-                </li>
-                <li class="">
-                    <a href="<c:url value="/bouquets_admin"/>" target="_self">Букеты</a>
-                </li>
-                <li class="">
-                    <a href="<c:url value="/compositions_admin"/>" target="_self">Копмозиции</a>
-                </li>
-                <li class="">
-                    <a href="<c:url value="/packs_admin"/>" target="_self">Упаковки</a>
-                </li>
-                <li class="">
-                    <a href="<c:url value="/decorations_admin"/>" target="_self">Украшения</a>
-                </li> --%>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">

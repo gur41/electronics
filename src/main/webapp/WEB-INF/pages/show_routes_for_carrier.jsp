@@ -75,12 +75,21 @@
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="">
-                    <a href="<c:url value="/"/>" target="_self">Главная</a>
+                    <a href="<c:url value="/order_carrier"/>" target="_self">Заявки</a>
                 </li>
                 <li class="">
-                    <a href="<c:url value="/client_note_all"/>" target="_self">Ноутбуки</a>
+                    <a href="<c:url value="/all_routes_for_carrier"/>" target="_self">Просмотреть маршруты</a>
                 </li>
+                <li class="">
+                    <a href="<c:url value="/carrier"/>" target="_self">Добавить маршрут</a>
+                </li>
+                <%--<li class="">
+                    <a href="<c:url value="/order_client"/>" target="_self">Заявки</a>
+                </li>--%>
                 <%-- <li class="">
+                    <a href="<c:url value="/flowers_admin"/>" target="_self">Цветы</a>
+                </li>
+                <li class="">
                     <a href="<c:url value="/bouquets_admin"/>" target="_self">Букеты</a>
                 </li>
                 <li class="">
@@ -133,49 +142,49 @@
                 <div class="col-md-12">
                     <h1 class="h2 page-header"
                         style="color:#8d1645; font-family: 'Lobster', cursive; margin-top: -1px;
-                        text-align: center;">Мои заявки</h1>
+                        text-align: center;">Маршруты</h1>
                     <section class="main">
 
 
                         <%--<div class="headname">
-                            <h1>Мои заявки</h1>
+                            <h1>Маршруты</h1>
                         </div>--%>
 
-                        <c:if test="${!empty orders}">
+                        <c:if test="${!empty listRoutes}">
                             <table class="tg">
                                 <tr>
-                                    <th width="40">ID</th>
-                                    <th width="80">Фамилия</th>
-                                    <th width="80">Имя</th>
-                                    <th width="80">Номер телефона</th>
-                                    <th width="80">E-mail</th>
-                                    <th width="120">Адрес доставки</th>
-                                    <th width="120">Цена</th>
-                                    <th width="120">Название товара</th>
-                                    <th width="80">Статус</th>
+                                    <th width="40">ID маршрута</th>
+                                    <th width="240">Название маршрута</th>
                                 </tr>
-                                <c:forEach items="${orders}" var="order">
+                                <c:forEach items="${listRoutes}" var="route">
                                     <tr>
-                                        <td>${order.idOrder}</td>
-                                        <td>${order.secondName}</td>
-                                        <td>${order.firstName}</td>
-                                        <td>${order.phone}</td>
-                                        <td>${order.eMail}</td>
-                                        <td>${order.adress}</td>
-                                        <td>${order.price}</td>
-                                        <td>${order.name}</td>
-                                        <td>${order.status}</td>
+                                        <td>${route.idRoute}</td>
+                                        <td>${route.nameOfRoute}</td>
                                     </tr>
                                 </c:forEach>
                             </table>
                         </c:if>
 
-                        <c:if test="${empty orders}">
+                        <c:if test="${empty listRoutes}">
                             <div class="headname">
-                                <h1>Список заявок пуст</h1>
+                                <h1>Такого маршрута нет</h1>
                             </div>
                         </c:if>
 
+                        <%-- <c:url var="addAction" value="/client/showClient"/>
+
+                        <div class="headname"><p></p>
+
+                            <form:form action="${addAction}" modelAttribute="listRoutes" class="form-horizontal">
+
+                                <div class="form-group">
+                                   <div class="col-sm-offset-2 col-sm-10">
+                                        <input type="submit" class="btn btn-success"
+                                               value="<spring:message text="Показать маршруты"/>"/>
+                                    </div>
+                                </div>
+                            </form:form>
+                        </div>--%>
                     </section>
 
                 </div>

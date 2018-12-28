@@ -82,7 +82,7 @@
     font-family: 'Bad Script', cursive;
     font-size: 30px;
     text-align: center;
-    color:#27ae60;
+    color:#1a8dde;;
     padding: 30px;
     text-decoration: none;
     text-indent: 8%;
@@ -100,7 +100,7 @@
     font-size: 18px;
 text-indent: 1.5em; /* Отступ первой строки */
     font-weight: 600;
-    color:#2ecc71;
+    color:#1a8dde;
 }
 
 .orderfield{

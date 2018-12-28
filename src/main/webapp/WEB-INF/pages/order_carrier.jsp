@@ -65,23 +65,14 @@
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="">
+                    <a href="<c:url value="/order_carrier"/>" target="_self">Заявки</a>
+                </li>
+                <li class="">
+                    <a href="<c:url value="/all_routes_for_carrier"/>" target="_self">Просмотреть маршруты</a>
+                </li>
+                <li class="">
                     <a href="<c:url value="/carrier"/>" target="_self">Добавить маршрут</a>
                 </li>
-                <%-- <li class="">
-                    <a href="<c:url value="/flowers_admin"/>" target="_self">Цветы</a>
-                </li>
-                <li class="">
-                    <a href="<c:url value="/bouquets_admin"/>" target="_self">Букеты</a>
-                </li>
-                <li class="">
-                    <a href="<c:url value="/compositions_admin"/>" target="_self">Копмозиции</a>
-                </li>
-                <li class="">
-                    <a href="<c:url value="/packs_admin"/>" target="_self">Упаковки</a>
-                </li>
-                <li class="">
-                    <a href="<c:url value="/decorations_admin"/>" target="_self">Украшения</a>
-                </li> --%>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                  <li class="dropdown">

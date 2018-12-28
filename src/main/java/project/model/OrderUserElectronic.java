@@ -16,6 +16,7 @@ public class OrderUserElectronic {
     private String secondName;
     private String eMail;
     private String status;
+    private String adress;
     private User userByIdOrderUserElectronics;
 
     @Id
@@ -47,6 +48,16 @@ public class OrderUserElectronic {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Basic
+    @Column(name = "adress", nullable = true, length = 255)
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
     @Basic
